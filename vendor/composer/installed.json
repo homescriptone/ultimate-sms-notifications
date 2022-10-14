@@ -1,0 +1,177 @@
+{
+    "packages": [
+        {
+            "name": "doctrine/cache",
+            "version": "1.12.1",
+            "version_normalized": "1.12.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/cache.git",
+                "reference": "4cf401d14df219fa6f38b671f5493449151c9ad8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/4cf401d14df219fa6f38b671f5493449151c9ad8",
+                "reference": "4cf401d14df219fa6f38b671f5493449151c9ad8",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.1 || ^8.0"
+            },
+            "conflict": {
+                "doctrine/common": ">2.2,<2.4"
+            },
+            "require-dev": {
+                "alcaeus/mongo-php-adapter": "^1.1",
+                "cache/integration-tests": "dev-master",
+                "doctrine/coding-standard": "^8.0",
+                "mongodb/mongodb": "^1.1",
+                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0",
+                "predis/predis": "~1.0",
+                "psr/cache": "^1.0 || ^2.0 || ^3.0",
+                "symfony/cache": "^4.4 || ^5.2 || ^6.0@dev",
+                "symfony/var-exporter": "^4.4 || ^5.2 || ^6.0@dev"
+            },
+            "suggest": {
+                "alcaeus/mongo-php-adapter": "Required to use legacy MongoDB driver"
+            },
+            "time": "2021-07-17T14:39:21+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\Cache\\": "lib/Doctrine/Common/Cache"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "PHP Doctrine Cache library is a popular cache implementation that supports many different drivers such as redis, memcache, apc, mongodb and others.",
+            "homepage": "https://www.doctrine-project.org/projects/cache.html",
+            "keywords": [
+                "abstraction",
+                "apcu",
+                "cache",
+                "caching",
+                "couchdb",
+                "memcached",
+                "php",
+                "redis",
+                "xcache"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/cache/issues",
+                "source": "https://github.com/doctrine/cache/tree/1.12.1"
+            },
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fcache",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "../doctrine/cache"
+        },
+        {
+            "name": "phplicengine/bitly",
+            "version": "v1.0.3",
+            "version_normalized": "1.0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phplicengine/bitly.git",
+                "reference": "8b357a82baefab05061ca86815e62d4b3cca5145"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phplicengine/bitly/zipball/8b357a82baefab05061ca86815e62d4b3cca5145",
+                "reference": "8b357a82baefab05061ca86815e62d4b3cca5145",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/cache": "^1.8",
+                "ext-curl": "*",
+                "php": ">=7.2"
+            },
+            "time": "2021-01-12T14:03:09+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "PHPLicengine\\": "lib/PHPLicengine"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "PHPLicengine",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Bitly API v4",
+            "keywords": [
+                "API-Client",
+                "PHP7",
+                "Shorturl",
+                "URL-Shortener",
+                "api",
+                "api-rest",
+                "api-server",
+                "api-service",
+                "bit.ly",
+                "bitlinks",
+                "bitly",
+                "bitly-api",
+                "bitly-client",
+                "bitly-v4",
+                "link-shortener",
+                "php",
+                "php72",
+                "restapi",
+                "shorten-urls",
+                "shortener",
+                "shortens-links",
+                "urlshortener"
+            ],
+            "support": {
+                "issues": "https://github.com/phplicengine/bitly/issues",
+                "source": "https://github.com/phplicengine/bitly/tree/v1.0.3"
+            },
+            "install-path": "../phplicengine/bitly"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

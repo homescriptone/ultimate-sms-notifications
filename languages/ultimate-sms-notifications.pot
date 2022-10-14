@@ -1,0 +1,1027 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ultimate SMS Notifications for WooCommerce\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-09-12 22:01+0000\n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: admin/class-woo-usn-admin-settings.php:557
+msgid "  Auth Token :  "
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:570
+msgid "  Twilio Phone Number :  "
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:544
+msgid " Account SID : "
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:518
+msgid " API Key : "
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:505
+msgid " Customer ID : "
+msgstr ""
+
+#: includes/core/class-woo-usn-customer-list.php:68
+msgid " customer(s) found"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:629
+msgid ""
+" Hope that you had a neat and snappy experience with the plugin. Would you "
+"please show us a little love by rating us in the WordPress.org?"
+msgstr ""
+
+#: includes/utils/class-woo-usn-scheduler.php:112
+msgid " scheduled can't be delivered, please review your configurations."
+msgstr ""
+
+#: includes/utils/class-woo-usn-scheduler.php:122
+msgid ""
+" scheduled, didn't have any message to send, please review your "
+"configurations."
+msgstr ""
+
+#: includes/utils/class-woo-usn-scheduler.php:134
+msgid " sent the "
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:766
+msgid ""
+"<br/>By enabling, an automated SMS will be send to the customer when his "
+"order status changed."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:746
+msgid ""
+"<br/>By enabling, an automated SMS will be send to the customer who have "
+"purchased on your store."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:1203
+msgid ""
+"<br/>By enabling, an automated SMS will be sent to a customer after his "
+"account creation."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:402
+msgid ""
+"<br/>By enabling, the customer decides whether  to receive any kinds of SMS."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:670
+msgid ""
+"<br/>By enabling, the shop owner/manager phone number will receive an "
+"automated SMS, when any purchase is made on the shop."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:435
+msgid ""
+"<br/>By enabling, the vendor phone number will receive an automated SMS, "
+"when anybody will purchase his product on the shop."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:690
+msgid ""
+"<br/>By enabling, you can send manually from your order , an SMS directly to "
+"the customer concerned."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:708
+msgid "<br/>Separate multiple phones numbers with a commas."
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:601
+msgid ""
+"<strong>SMS Notifications to vendors</strong> requires <strong>Dokan</strong>"
+"/<strong>WCFM Vendors</strong> in order to work. "
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:561
+msgid "A error has occured during the SMS Sending, please try again later."
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:173
+msgid "Add message block"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:496
+msgid "Add Rule"
+msgstr ""
+
+#: includes/utils/class-woo-usn-utility.php:1146
+msgid "AND"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:657
+msgid "awesome"
+msgstr ""
+
+#: admin/class-woo-usn-admin-menu.php:20
+#: includes/admin/class-woo-usn-custom-post-types.php:16
+#: includes/admin/class-woo-usn-custom-post-types.php:17
+#: includes/admin/class-woo-usn-custom-post-types.php:26
+#: includes/admin/class-woo-usn-custom-post-types.php:32
+msgid "Bulk SMS"
+msgstr ""
+
+#: admin/class-woo-usn-admin-menu.php:22
+#: includes/admin/class-woo-usn-custom-post-types.php:675
+msgid "Bulk SMS Analytics"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:336
+msgid "Bulk SMS Analytics Name"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:330 admin/class-woo-usn-admin.php:338
+msgid "Bulk SMS Campaign Name"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:270
+msgid "Bulk SMS End Sending :"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:320
+msgid "Bulk SMS Message to Send :"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:134
+msgid "Bulk SMS Reports"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:300
+msgid "Bulk SMS Sending Intervals :"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:284
+msgid "Bulk SMS Sending List :"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:256
+msgid "Bulk SMS Start Sending :"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:82
+#: includes/admin/class-woo-usn-custom-post-types.php:83
+#: includes/admin/class-woo-usn-custom-post-types.php:92
+#: includes/admin/class-woo-usn-custom-post-types.php:98
+msgid "Bulk SMS Stats"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:420
+msgid "By ID : Phone Numbers will be retrieved based on the order ID"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:171
+msgid "characters typed"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:131
+msgid "Compose Bulk SMS"
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:482
+msgid "Configure SMS Gateways"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:48
+#: includes/admin/class-woo-usn-custom-post-types.php:49
+#: includes/admin/class-woo-usn-custom-post-types.php:58
+#: includes/admin/class-woo-usn-custom-post-types.php:132
+msgid "Contact List"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:348
+msgid "Contact List Created"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:347
+msgid "Contact List Name"
+msgstr ""
+
+#: admin/class-woo-usn-admin-menu.php:24
+#: includes/admin/class-woo-usn-custom-post-types.php:64
+msgid "Contact Lists"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:240
+msgid "Customer List Details "
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:241
+msgid "Customers Names "
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:242
+msgid "Customers Phone Numbers "
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:248
+msgid "Daily : Bulk SMS will be sent each days"
+msgstr ""
+
+#: includes/admin/class-woo-usn-admin-list-tables.php:166
+msgid "Date"
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:594
+msgid "Delete API Credentials "
+msgstr ""
+
+#: includes/core/class-woo-usn-sms.php:306
+msgid "Delivery Messages : "
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:454 admin/class-woo-usn-admin.php:507
+msgid "Delivery Messages Status : "
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:547
+msgid "Delivery Reports : "
+msgstr ""
+
+#: admin/class-woo-usn-admin-menu.php:25
+msgid "Documentation"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:421
+msgid "Dynamically : Phone Numbers will be retrieved based on some parameters"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:20
+msgid "Edit Bulk SMS"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:86
+msgid "Edit Bulk SMS Stat"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:52
+msgid "Edit Contact List"
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:401
+#: admin/class-woo-usn-admin-settings.php:434
+#: admin/class-woo-usn-admin-settings.php:669
+#: admin/class-woo-usn-admin-settings.php:689
+#: admin/class-woo-usn-admin-settings.php:745
+#: admin/class-woo-usn-admin-settings.php:765
+#: admin/class-woo-usn-admin-settings.php:1202
+msgid "Enable/Disable"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:628
+msgid "Enjoying Ultimate SMS Notifications for WooCommerce?"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:237
+msgid "enter the amount"
+msgstr ""
+
+#: includes/ui/class-woo-usn-ui-fields.php:38
+msgid "equals"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:471
+msgid "Exclude Customers :"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:430
+msgid "Extraction by ID"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:408
+msgid "Extraction mode"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:462
+msgid "Extraction Rules types :"
+msgstr ""
+
+#: includes/admin/class-woo-usn-admin-list-tables.php:113
+msgid "Failed"
+msgstr ""
+
+#: admin/class-woo-usn-admin-menu.php:26
+msgid "FAQ"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:532
+msgid "Filter..."
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:632
+msgid ""
+"From CSV/Excel File: Phone Numbers will be retrieved from a file loaded."
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:349
+msgid "Get customer permission before sending SMS : "
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:356
+msgid "Give an name to your Bulk SMS Campaign."
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:358
+msgid "Give an name to your Contact List."
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:168 admin/class-woo-usn-admin.php:664
+#: includes/admin/class-woo-usn-custom-post-types.php:645
+msgid "here"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:657
+#, php-format
+msgid ""
+"Hey, How do you like %s so far? Test all our %s premium features with a "
+"<strong>%d-day</strong> free trial. <br/><br/>  <a href='%s' class='button "
+"button-primary' > Click here </a>"
+msgstr ""
+
+#. Author of the plugin
+msgid "HomeScript"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:523
+msgid "HomeScript team"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:465
+msgid ""
+"How would you like to get order(s) that contain(s) data related to the "
+"customer(s) you want to include  into the list?"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:302
+msgid "How would you like to plan for sending bulk SMS ?"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:411
+msgid "How would you want to retrieve Phone Numbers for the Contact List?"
+msgstr ""
+
+#. URI of the plugin
+#. Author URI of the plugin
+msgid ""
+"https://ultimatesmsnotifications.com?"
+"utm_source=customer_websites&utm_medium=plugin_page"
+msgstr ""
+
+#: includes/ui/class-woo-usn-ui-fields.php:16
+msgid "If customer billing country"
+msgstr ""
+
+#: includes/ui/class-woo-usn-ui-fields.php:17
+msgid "If customer delivery country"
+msgstr ""
+
+#: includes/ui/class-woo-usn-ui-fields.php:18
+msgid "If customer email domain name"
+msgstr ""
+
+#: includes/ui/class-woo-usn-ui-fields.php:20
+msgid "If order amount"
+msgstr ""
+
+#: includes/ui/class-woo-usn-ui-fields.php:19
+msgid "If order status"
+msgstr ""
+
+#: includes/ui/class-woo-usn-ui-fields.php:21
+msgid "If order taxes"
+msgstr ""
+
+#: includes/ui/class-woo-usn-ui-fields.php:14
+msgid "If payment methods used"
+msgstr ""
+
+#: includes/ui/class-woo-usn-ui-fields.php:22
+msgid "If shipping amount"
+msgstr ""
+
+#: includes/ui/class-woo-usn-ui-fields.php:23
+msgid "If shipping amount (inc taxes)"
+msgstr ""
+
+#: includes/ui/class-woo-usn-ui-fields.php:15
+msgid "If shipping methods used"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:523
+#, php-format
+msgid ""
+"If you like %1$s please leave us a %2$s rating.This will make happy %3$s."
+msgstr ""
+
+#: includes/ui/class-woo-usn-ui-fields.php:44
+msgid "IN"
+msgstr ""
+
+#: includes/ui/class-woo-usn-ui-fields.php:37
+msgid "is less or equal to"
+msgstr ""
+
+#: includes/ui/class-woo-usn-ui-fields.php:36
+msgid "is less than"
+msgstr ""
+
+#: includes/ui/class-woo-usn-ui-fields.php:40
+msgid "is more or equal to"
+msgstr ""
+
+#: includes/ui/class-woo-usn-ui-fields.php:39
+msgid "is more than"
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:981
+msgid "Kivalo API Key : "
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:968
+msgid "Kivalo From Phone number : "
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:87
+msgid "Licence Key :  "
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:172
+msgid "limit reached for sms"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:239
+msgid "Loading ..."
+msgstr ""
+
+#: includes/admin/class-woo-usn-admin-list-tables.php:13
+msgid "Log"
+msgstr ""
+
+#: includes/admin/class-woo-usn-admin-list-tables.php:14
+msgid "Logs"
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:1069
+msgid "Message Bird API Key : "
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:1056
+msgid "Message Bird Originator : "
+msgstr ""
+
+#: includes/admin/class-woo-usn-admin-list-tables.php:164
+msgid "Message Sent"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:453 admin/class-woo-usn-admin.php:506
+msgid "Message sent : "
+msgstr ""
+
+#: includes/core/class-woo-usn-sms.php:306
+msgid "Messages : "
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:538
+msgid "Messages to send : "
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:1162
+msgid "Messages: "
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:250
+msgid "Monthly : Bulk SMS will be sent each months"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:18
+#: includes/admin/class-woo-usn-custom-post-types.php:19
+#: includes/admin/class-woo-usn-custom-post-types.php:21
+msgid "New Bulk SMS"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:84
+#: includes/admin/class-woo-usn-custom-post-types.php:85
+#: includes/admin/class-woo-usn-custom-post-types.php:87
+msgid "New Bulk SMS Stat"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:50
+#: includes/admin/class-woo-usn-custom-post-types.php:51
+#: includes/admin/class-woo-usn-custom-post-types.php:53
+msgid "New Contact List"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:24
+msgid "No Bulk SMS found"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:25
+msgid "No Bulk SMS in the trash"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:90
+msgid "No Bulk SMS Stat found"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:91
+msgid "No Bulk SMS Stat in the trash"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:56
+msgid "No Contact List found"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:57
+msgid "No Contact List in the trash"
+msgstr ""
+
+#: includes/ui/class-woo-usn-ui-fields.php:45
+msgid "NOT IN"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:238
+#: includes/admin/class-woo-usn-custom-post-types.php:247
+msgid "Once : Bulk SMS will be sent only today"
+msgstr ""
+
+#: includes/utils/class-woo-usn-utility.php:1147
+msgid "OR"
+msgstr ""
+
+#: includes/admin/class-woo-usn-admin-list-tables.php:165
+msgid "Phone Number"
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:1152
+msgid "Phone Number : "
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:301
+msgid "Phone number of the store owner/manager : "
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:452 admin/class-woo-usn-admin.php:505
+#: includes/core/class-woo-usn-sms.php:306
+msgid "Phone Numbers : "
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:513
+msgid "Please fill messages and phone numbers fields before press Send."
+msgstr ""
+
+#: includes/utils/class-woo-usn-utility.php:1005
+msgid ""
+"Please install and activate <strong>WooCommerce</strong> before using "
+"<strong> Ultimate SMS Notifications for WooCommerce </strong>."
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:544
+msgid "Please provide an phone number before to press Send SMS."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:484
+msgid ""
+"Please provide API Credentials in order to be able to use Ultimate SMS "
+"Notifications into your store."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:453
+#: admin/class-woo-usn-admin-settings.php:467
+#: admin/class-woo-usn-admin-settings.php:808
+#: admin/class-woo-usn-admin-settings.php:825
+#: admin/class-woo-usn-admin-settings.php:842
+#: admin/class-woo-usn-admin-settings.php:859
+#: admin/class-woo-usn-admin-settings.php:876
+#: admin/class-woo-usn-admin-settings.php:893
+#: admin/class-woo-usn-admin-settings.php:910
+#: admin/class-woo-usn-admin-settings.php:927
+#: admin/class-woo-usn-admin-settings.php:1217
+msgid "Please put the default sms to send."
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:433
+msgid "Provide the order ID, we must use for retrieve the Phone Numbers"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:525
+msgid "Related to bulk SMS : "
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:446
+msgid "Relationship between Extraction Rules types "
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:174
+#: includes/admin/class-woo-usn-custom-post-types.php:230
+msgid "Remove message block"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Run Bulk SMS Campaign and send SMS Notifications to customers when there are "
+"interacting with your store."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:592
+msgid "Save API Credentials"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:23
+msgid "Search Bulk SMS"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:89
+msgid "Search Bulk SMS Stat"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:55
+msgid "Search Contact List"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:496
+msgid "Search Customers"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:617
+msgid "Send"
+msgstr ""
+
+#: admin/class-woo-usn-admin-menu.php:18
+#: includes/admin/class-woo-usn-custom-post-types.php:590
+msgid "Send SMS"
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:169
+msgid "Send SMS after customer purchase :  "
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:135
+msgid "Send SMS after customer register a new account : "
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:191
+msgid "Send SMS after order changed :  "
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:123
+msgid "Send SMS from orders :  "
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:279
+msgid "Send SMS to shop owner/manager after an order completed :  "
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:313
+msgid "Send SMS to vendors after an order completed :  "
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:607
+msgid ""
+"Send test messages to a number to find out if your API credentials are "
+"working properly."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:642
+#: admin/class-woo-usn-admin-settings.php:1178
+msgid "Send Test SMS"
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:1118
+msgid "SendChamp API Key : "
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:1105
+msgid "SendChamp Channel ID : "
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:1092
+msgid "SendChamp Domain URL : "
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:238
+msgid "separate domain name by commas"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:440
+msgid "separate the order ID by commas"
+msgstr ""
+
+#. ID used to identify this section and with which to register options.
+#: admin/class-woo-usn-admin-settings.php:80
+msgid "Set licence informations for Ultimate SMS Notifications for WooCommerce"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:387
+msgid "Settings"
+msgstr ""
+
+#. ID used to identify this section and with which to register options.
+#: admin/class-woo-usn-admin-settings.php:116
+msgid "Setup your SMS Notifications"
+msgstr ""
+
+#: admin/class-woo-usn-admin-menu.php:28
+msgid "SMS"
+msgstr ""
+
+#: includes/admin/class-woo-usn-admin-list-tables.php:163
+msgid "SMS Delivery Status"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:440 admin/class-woo-usn-admin.php:450
+msgid "SMS failed to send , please again later ! ."
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:503
+msgid "SMS failed to send , please again later ."
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:494
+msgid "SMS failed to send , please again later."
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:558
+msgid "SMS failed to send , please try again later."
+msgstr ""
+
+#: includes/core/class-woo-usn-sms.php:298
+msgid "SMS failed to send , please trying again later ."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:24
+#: includes/admin/class-woo-usn-admin-list-tables.php:162
+msgid "SMS Gateways"
+msgstr ""
+
+#: admin/class-woo-usn-admin-menu.php:16
+msgid "SMS Logs"
+msgstr ""
+
+#: admin/class-woo-usn-admin-menu.php:13
+#: admin/class-woo-usn-admin-settings.php:23
+msgid "SMS Notifications"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:438 admin/class-woo-usn-admin.php:486
+#: includes/core/class-woo-usn-sms.php:297
+msgid "SMS successfully sent"
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:290
+msgid "SMS that shop owner/manager receive after a completed order : "
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:324
+msgid "SMS that vendor receive after an completed order : "
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:146
+msgid "SMS to send after customers have signed up :"
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:180
+msgid "SMS to send after your customer purchase on your store :"
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:224
+msgid "SMS to send when the order status is cancelled :"
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:202
+msgid "SMS to send when the order status is completed :"
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:257
+msgid "SMS to send when the order status is failed :"
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:246
+msgid "SMS to send when the order status is on hold :"
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:268
+msgid "SMS to send when the order status is pending payment :"
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:213
+msgid "SMS to send when the order status is processing :"
+msgstr ""
+
+#. ID used to identify the field throughout the theme.
+#: admin/class-woo-usn-admin-settings.php:235
+msgid "SMS to send when the order status is refunded :"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:474
+msgid "Specify the customers names that mustn't been here."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:606
+msgid "Status"
+msgstr ""
+
+#: admin/class-woo-usn-admin-menu.php:27
+msgid "Submit a ticket"
+msgstr ""
+
+#: includes/admin/class-woo-usn-admin-list-tables.php:111
+msgid "Success"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:549
+msgid "Successfully sent"
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:626
+msgid "Testing messages : "
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:616
+msgid "Testing numbers : "
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:523
+msgid "Thanks :)"
+msgstr ""
+
+#: public/class-woo-usn-public.php:134
+msgid "The phone number provided isn't valid, please correct it."
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:677
+msgid ""
+"Track easily the Bulk SMS delivery with our Bulk SMS Analytic tool ( Pro "
+"Features ) :  "
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:322
+msgid "Type your message here :  "
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:628
+#: admin/class-woo-usn-admin-settings.php:639
+#: admin/class-woo-usn-admin-settings.php:1164
+#: admin/class-woo-usn-admin-settings.php:1175
+#: includes/admin/class-woo-usn-custom-post-types.php:611
+msgid "Type your message here."
+msgstr ""
+
+#. Name of the plugin
+#: admin/class-woo-usn-admin-settings.php:30 admin/class-woo-usn-admin.php:657
+msgid "Ultimate SMS Notifications for WooCommerce"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:523
+msgid "Ultimate Sms Notifications for WooCommerce"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:641
+msgid "Upload CSV/Excel File :"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:644
+msgid "Upload the file that will be used to send the Bulk SMS"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:645
+msgid "Upload your file"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:22
+msgid "View Bulk SMS"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:88
+msgid "View Bulk SMS Stat"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:54
+msgid "View Contact List"
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:1005
+msgid "Waapi Client ID : "
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:1032
+msgid "Waapi Domain URL : "
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:1018
+msgid "Waapi Instance ID : "
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:249
+msgid "Weekly : Bulk SMS will be sent each weeks"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:286
+msgid "Which customer list must be used to send the Bulk SMS ?"
+msgstr ""
+
+#: includes/admin/class-woo-usn-custom-post-types.php:645
+msgid "You can based your CSV/Excel file on this sample : "
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:794
+msgid "You can configure options you want to use into this plugin here."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:1010
+#: admin/class-woo-usn-admin-settings.php:1023
+#: admin/class-woo-usn-admin-settings.php:1037
+msgid ""
+"You can retrieve it from your <a href='https://checkout.waapi."
+"co/api/affurl/0elOEJ0M4As1ENZ1n/HLKBxj10HmbMiA8o?target=Vpas2KguYoFAg08o'>"
+"Waapi account</a>."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:1061
+#: admin/class-woo-usn-admin-settings.php:1074
+msgid ""
+"You can retrieve it from your <a href='https://dashboard.messagebird."
+"com/en/developers/settings'>Message Bird account</a>."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:1110
+#: admin/class-woo-usn-admin-settings.php:1123
+msgid ""
+"You can retrieve it from your <a href='https://my.sendchamp.com/'>SendChamp "
+"account</a>."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:1097
+msgid ""
+"You can retrieve it from your <a href='https://my.sendchamp."
+"com/accountSettings'>SendChamp account</a>."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:510
+#: admin/class-woo-usn-admin-settings.php:523
+msgid ""
+"You can retrieve it from your <a href='https://portal.telesign.com/login'>"
+"Telesign Portal</a>."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:973
+#: admin/class-woo-usn-admin-settings.php:986
+msgid ""
+"You can retrieve it from your <a href='https://sms.kivalosolutions.com'>"
+"Kivalo account</a>."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:549
+#: admin/class-woo-usn-admin-settings.php:562
+#: admin/class-woo-usn-admin-settings.php:575
+msgid ""
+"You can retrieve it from your <a href='https://www.twilio."
+"com/referral/bc0mtq'>Twilio Console</a>."
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:582
+msgid "you can setup the plugin here"
+msgstr ""
+
+#: admin/class-woo-usn-admin.php:175
+msgid ""
+"You have reached the maximal characters allowed for SMS, add a new block for "
+"continue your SMS messages."
+msgstr ""
+
+#: admin/class-woo-usn-admin-settings.php:578
+msgid ""
+"You will need a Account SID and Auth Token in order to use Twilio's API. If "
+"you already have an account you can retrieve\n"
+"\t\t\tthem from your Twilio Console within the  <a href='www.twilio."
+"com/referral/bc0mtq'>Console</a>. If you have not signed up\n"
+"\t\t\tyet, sign up <a href='www.twilio.com/referral/bc0mtq'>here</a>."
+msgstr ""

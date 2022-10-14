@@ -1,0 +1,435 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+img.woo_usn_ajax_loading , img.woo_usn_ajax_loadings{
+  width: 90px !important;
+  display: none;
+}
+img.woo_usn_ajax_loading.woo_usn_export,img.woo_usn_ajax_loadings.woo_usn_exports{
+  margin-left: 120px;
+}
+
+#adminmenu .wp-menu-image img{
+  padding: unset !important;
+}
+
+
+div#usn-center-panel.w3-bar {
+  width: 98px !important;
+  height: 350px !important;
+  position: sticky !important;
+}
+
+.usn-center-panel-values {
+  /* margin-top: -350px !important;
+  position: initial !important;
+  margin-left: 106px !important; */
+  background-color: #f1f1f1 !important;
+}
+
+.w3-bar-item.w3-button {
+  width: inherit !important;
+}
+
+.usn_background_color {
+  background-color: #0073aa !important;
+  color: white;
+}
+
+.usn-wrapper {
+  width: 100%;
+}
+
+.usn-list-names {
+  width: 700px;
+  height: 20px;
+  display: block;
+  border: 2px solid #333333;
+  box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.3);
+  margin-left: 130px;
+}
+
+.usn-list-names.usn-filename{
+  padding : 10px;
+}
+
+.usn-fields ,.usn-btns{
+  display: inline-block;
+}
+
+.usn-list-names {
+  display: inline !important;
+  margin-left: unset !important;
+}
+
+select.usn-export-format {
+  background-size: 30px;
+  background-position-x: 130px;
+  width: 159px;
+  background-color: white;
+}
+
+.usn-exports {
+  border-radius: 10px;
+  background-color: white;
+  text-align: center;
+}
+
+.usn-export:hover,.usn-export:focus,.usn-exports:hover {
+  background-color: #66ccFF;
+  color: white;
+}
+
+.usn-export-return,.usn-exports-return:hover{
+  margin : 21px;
+  margin-left : 50px;
+}
+
+div.usn-export-parent{
+  margin-top:20px;
+}
+/*Modal for the version 1.2.1*/
+
+/* The Modal (background) */
+.woo_usn_modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 40px ;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.woo_usn_modal_header{
+  padding: 2px 16px;
+  background-color: rgb(0, 133, 186);
+  color: white !important;
+  border-radius: 6px;
+}
+
+.woo_usn_modal_header h2{
+  background-color: rgb(0, 133, 186);
+  color: white !important;
+}
+/* Modal Content/Box */
+.woo_usn_modal_content {
+  background-color: #fefefe;
+  border-radius: 6px;
+  margin: 15% auto; /* 15% from the top and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.woo_usn_central_fields_panels{
+  height: 100px;
+}
+
+/* The Close Button */
+.woo_usn_close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.woo_usn_close:hover,
+.woo_usn_close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.woousn-tab:hover , .woousn-tab:focus{
+	background-color: white;
+	color: black;
+}
+
+input.woousn-text {
+  width: 100%;
+  color : black !important;
+  padding: 8px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+  background-color : rgb(241, 241, 241)!important;
+}
+
+.woousn-text-customs {
+  color : black !important;
+  padding: 8px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border-style : solid !important;
+}
+
+.woousn-text-customs-api{
+  width: 100%;
+  color : black !important;
+  padding: 8px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border-style : solid !important;
+}
+
+.woousn-query{
+  width: 50%;
+  color : black !important;
+  padding: 8px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border-style : solid !important;
+}
+
+.woousn-utility-panel{
+  text-align: center;
+  margin-bottom: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+}
+
+.woousn-utility-panels{
+  text-align: center;
+  margin-bottom: 12px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+  background-color: white !important;
+}
+
+.woousn-tab-active{
+  background-color: white !important;
+}
+
+.woousn-settings-panel,.woousn-options-tab {
+  margin-bottom: 12px;
+  padding-top: 5px;
+  padding-left: 8px;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 4px;
+}
+
+textarea.woousn-textarea {
+  width: 60%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  color : black;
+  resize: none;
+}
+
+input.woousn-text ::-webkit-input-placeholder {
+  color: rgb(85, 85, 85)!important;
+}
+
+
+
+table.woousn-content {
+  border-collapse: collapse;
+  width: 100%;
+  text-align : center
+  }
+
+
+  td.woousn-content, th.woousn-content {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  
+  }
+
+  tr.woousn-content:nth-child(even) {
+  background-color: #66ccff;
+  color : white
+  
+  }
+
+  .woo-usn-response-status{
+    display: none; 
+  }
+
+
+
+  .woousn-load-contacts_label_style{
+    padding: 10px;
+  }
+
+  div#publishing-action.woousn-publishing-action{
+    float : unset !important;
+  }
+
+  .woousn-bulk-sms-send-min-banner{
+    background: unset !important;
+  }
+
+  .woousn-service-box{
+      flex: 0 0 28.9%;
+      margin: 2.2%;
+      text-align: center;
+      border-radius: 5px;
+      background-color: #66ccFF !important;
+  }
+
+  div.service-thumb img{
+    max-width: 100%;
+  }
+
+  ::-webkit-input-placeholder {
+    text-align: center;
+ }
+ 
+ :-moz-placeholder { /* Firefox 18- */
+    text-align: center;  
+ }
+ 
+ ::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center;  
+ }
+ 
+ :-ms-input-placeholder {  
+    text-align: center; 
+ }
+
+ .woousn-comparison-area {
+  display: flex;
+  justify-content: space-between;
+}
+
+.woousn-comparison-area .woousn-compare-box {
+  flex: 0 0 48% !important;
+  background-color: #fff !important;
+  border: 1px solid #E0E9EC !important;
+  border-radius: 5px !important;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05) !important;
+  padding: 50px !important;
+  box-sizing: border-box !important;
+}
+
+.woousn-comparison-area .woousn-compare-box .woousn-logo-section {
+  margin-bottom: 58px;
+  position: relative;
+}
+
+.woousn .woousn-comparison-section .woousn-comparison-area .woousn-compare-box {
+  flex: 0 0 48% !important;
+  background-color: rgb(255, 255, 255) !important;
+  border: 1px solid rgb(224, 233, 236) !important;
+  border-radius: 5px !important;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.05) !important;
+  padding: 50px !important;
+  box-sizing: border-box !important;
+}
+
+.woousn-features{
+  width: 21px !important;
+  margin-right : 12px;
+}
+
+.woousn-comparison-section .woousn-comparison-area .woousn-compare-box li{
+  
+  font-size : 15px;
+  line-height: 1.5em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  display: inline-flex;
+}
+
+.woousn-lite{
+  border-color: #66ccFF !important;
+}
+
+.woousn-pros{
+  border-color: red !important;
+}
+
+.woousn-wrap{
+  margin: 20px 20px 0 20px !important;
+  text-align: center;
+}
+.woousn-upgrade{
+  text-decoration: none !important;
+  color : white !important;
+}
+
+input#woousn-bulk-sms-phone-numbers {
+  width: 150% !important;
+}
+
+
+div.woousn_customer_list p.form-row  span.homescript-input-wrapper{
+  display: inline-flex;
+}
+
+.woousn-textarea-wrap{
+  box-sizing: border-box;
+}
+
+div.woousn-fields-second-wrap span.homescript-input-wrapper{
+    display: inline-block;
+    margin-left: 35%;
+    vertical-align: middle;
+}
+
+.homescript-input-wrapper{
+  display: unset !important;
+}
+
+.woousn-select{
+  width: 50% !important;
+}
+
+.meta-box-sortables input.woousn-date{
+   width: 50% !important;
+}
+
+.woousn-cl-loader, .woousn-cl-status {
+  border: 5px solid #f3f3f3; /* Light grey */
+  border-top: 5px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+span.homescript-input-wrapper{
+  float : none !important;
+}
+
+.woo-usn-table-label{
+  width:20% !important;
+  background-color: aliceblue !important;
+  padding: 10px !important;
+  vertical-align: baseline !important;
+}
+
+
+
+div.woo-usn-radio{
+  display: inline-grid;
+}
+
+
+div.woo_usn_wha_api{
+  display: none;
+}

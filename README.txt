@@ -1,10 +1,10 @@
 === Ultimate SMS & WhatsApp Notifications for WooCommerce ===  
-Contributors: homescript  , freemius
-Tags: woocommerce order notifications, woocommerce whatsapp order notifications, woocommerce order sms notifications, send, sms, woocommerce, wordpress, subscribe, notification, webservice,API, woocommerce, subscribes-sms, EDD, twilio, bulksms, clockworksms, nexmo, whatsapp, whatsapp woocommerce, whatsapp notifications, tiktok notifications  
+Contributors: homescript  , freemius  
+Tags: orders notifications, whatsapp orders notifications, order sms notifications, woocommerce, wordpress, subscribe, notification, webservice,API, woocommerce, subscribes-sms, EDD, twilio, bulksms, clockworksms, nexmo, whatsapp, whatsapp woocommerce, whatsapp notifications, tiktok notifications  
 Donate link: https://buymeacoffee.com/homescriptone/  
 Requires at least: 4.4  
-Tested up to: 6.0  
-Stable tag: 1.9.3  
+Tested up to: 6.0   
+Stable tag: 1.9.4     
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt    
 
@@ -129,6 +129,10 @@ If you get stuck, you can ask for help on the <a href="https://ultimatesmsnotifi
 == Screenshots ==
 
 == Changelog ==
+<h4>1.9.4 - 14 October 2022</h4>
+<ul>
+<li>Add compatibility with WooCommerce 7.0.</li>
+</ul>
 <h4>1.9.3 - 1 October 2022</h4>
 <ul>
 <li>Add hooks for developers looking to add a custom gateways.</li>

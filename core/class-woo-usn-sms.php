@@ -77,6 +77,13 @@ class Woo_Usn_SMS
                 'sender_name' => $id,
                 'route'       => 'dnd',
             );
+        } elseif ( 'AvlyText' === $this->sms_api->api_used ) {
+            $url = "https://api.avlytext.com/v1/sms?api_key=" . $id;
+            $data = array(
+                'sender'    => $token,
+                'recipient' => $to,
+                'text'      => $body,
+            );
         }
         
         $result = wp_remote_post( $url, array(
@@ -125,6 +132,24 @@ class Woo_Usn_SMS
                 return 400;
             } else {
                 return 200;
+            }
+        
+        } elseif ( 'AvlyText' === $this->sms_api->api_used ) {
+            
+            if ( isset( $decoded->id ) ) {
+                return 200;
+            } else {
+                
+                if ( function_exists( 'wc_get_logger' ) ) {
+                    $wc_log = wc_get_logger();
+                    $wc_log->error( 'AvlyText error code : ' . print_r( $decoded, true ), array(
+                        'source' => 'ultimate-sms-notifications',
+                    ) );
+                } else {
+                    Woo_Usn_Utility::write_log( 'AvlyText error code :' . print_r( $decoded, true ) );
+                }
+                
+                return 400;
             }
         
         } else {
@@ -198,6 +223,14 @@ class Woo_Usn_SMS
                     false
                 );
             } elseif ( 'SendChamp' === $sms_api ) {
+                $status = $this->send_sms_with_rest(
+                    $this->sms_api->first_api_key,
+                    $this->sms_api->second_api_key,
+                    $phone_number,
+                    $message_to_send,
+                    false
+                );
+            } elseif ( 'AvlyText' === $sms_api ) {
                 $status = $this->send_sms_with_rest(
                     $this->sms_api->first_api_key,
                     $this->sms_api->second_api_key,

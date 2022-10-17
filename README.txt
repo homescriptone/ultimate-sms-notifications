@@ -1,14 +1,14 @@
 === Ultimate SMS & WhatsApp Notifications for WooCommerce ===  
 Contributors: homescript  , freemius  
-Tags: orders notifications, whatsapp orders notifications, order sms notifications, woocommerce, wordpress, subscribe, notification, webservice,API, woocommerce, subscribes-sms, EDD, twilio, bulksms, clockworksms, nexmo, whatsapp, whatsapp woocommerce, whatsapp notifications, tiktok notifications  
+Tags: sms, woocommerce, whatsapp, orders notifications, woocommerce orders, ecommerce, e-commerce, marketing  
 Donate link: https://buymeacoffee.com/homescriptone/  
 Requires at least: 4.4  
 Tested up to: 6.0   
-Stable tag: 1.9.4     
+Stable tag: 1.9.5      
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt    
 
-Just another WooCommerce SMS & WhatsApp notifications plugin.  
+Send WooCommerce Orders Notifications and more by using SMS & WhatsApp.  
 
 == Description ==
 
@@ -22,6 +22,7 @@ Just another WooCommerce SMS & WhatsApp notifications plugin.
     <li>Telesign ( SMS API )</li>
     <li>Kivalo Solutions ( SMS API )</li>
     <li>Message Bird ( SMS API )</li>
+    <li>AvlyText ( SMS API )</li>
     <li>SendChamp Solution ( SMS API )</li>
     <li>Ultramsg ( Whatsapp API )</li>
     <li>FastWaSMS ( Whatsapp API )</li>
@@ -113,6 +114,7 @@ Manual installation method requires downloading the Ultimate SMS Notifications f
     <li>Kivalo Solutions</li>
     <li>Message Bird</li>
     <li>SendChamp Solution</li>
+    <li>AvlyText</li>
 </ul>
 
 = Which WhatsApp API are supported ? =
@@ -129,6 +131,11 @@ If you get stuck, you can ask for help on the <a href="https://ultimatesmsnotifi
 == Screenshots ==
 
 == Changelog ==
+<h4>1.9.5 - 17 October 2022</h4>
+<ul>
+<li>Fix bugs in settings blocking Text message sending.</li>
+<li>Add AvlyText SMS Gateways.</li>
+</ul>
 <h4>1.9.4 - 14 October 2022</h4>
 <ul>
 <li>Add compatibility with WooCommerce 7.0.</li>

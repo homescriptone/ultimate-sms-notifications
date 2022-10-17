@@ -104,6 +104,10 @@
       var woo_usn_testing_messages = $("textarea#woo_usn_testing_messages").val();
 
       var recipient_selection_mode = $('input[name="woo_usn_qs_pn"]:checked').val();
+
+      if ( undefined == recipient_selection_mode ) {
+        recipient_selection_mode = "use-phone-number";
+      }
     
       // this code runs if you're trying to send custom sms.
       if ( 'use-phone-number' == recipient_selection_mode ) {
@@ -237,6 +241,11 @@
         woo_usn_first_api_key = $('input#woo_usn_ebulksms_username').val();
         woo_usn_second_api_key = $('input#woo_usn_ebulksms_api_key').val();
         data.woo_usn_ebulksms_phone_number = $('input#woo_usn_ebulksms_from_number').val();
+      } else {
+        var custom_data  = $('form').serializeJSON();
+        woo_usn_api_choosed = custom_data.woo_usn_api_choosed;
+        woo_usn_first_api_key       = custom_data.woo_usn_creds.first;
+        woo_usn_second_api_key      = custom_data.woo_usn_creds.second; 
       }
       data.api_choosed = woo_usn_api_choosed;
       data.first_api_key = woo_usn_first_api_key;

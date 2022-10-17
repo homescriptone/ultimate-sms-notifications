@@ -959,10 +959,9 @@ class Woo_Usn_Admin_Settings
     {
         $list = array(
             'Kivalo',
-            //'WA API',
             'Message Bird',
             'SendChamp',
-            'eBulkSMS',
+            'AvlyText'
         );
         $api_name = array_merge( $api_name, $list );
         return $api_name;
@@ -1106,78 +1105,43 @@ class Woo_Usn_Admin_Settings
         Woo_Usn_UI_Fields::format_html_fields( "You will need a SendChamp <a href='https://my.sendchamp.com/'> API Key </a> and <a href='https://support.sendchamp.com/article/13-a-guide-on-how-to-get-your-api-keys'> Channel ID </a> in order to send SMS. " );
         ?>
         </div>
-        <div id="woo_usn_api_twilio_whatsapp" class="wrap" style="display : none;" data-name="twilio_whatsapp">
-			<?php 
-        Woo_Usn_UI_Fields::format_html_fields( 'Set Twilio WhatsApp by providing information necessary in the fields below.<br/>' );
-        echo  '<br/>' ;
-        homescript_input_fields( 'woo_usn_twilio_account_sid', array(
+		<div id="woo_usn_api_avlytext" class="wrap" data-name="avlytext" style="display:none;">
+		<?php 
+        $api_choosed = get_option( 'woo_usn_api_choosed' );
+        Woo_Usn_UI_Fields::format_html_fields( 'Set AvlyText by providing information necessary in the fields below.<br/>' );
+        Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
+        $woo_usn_creds = get_option( 'woo_usn_creds', false );
+        $first_data = "";
+        $second_data = "";
+        
+        if ( "AvlyText" == $api_choosed ) {
+            $first_data = $woo_usn_creds['first'];
+            $second_data = $woo_usn_creds['second'];
+        }
+        
+        homescript_input_fields( 'woo_usn_creds[first]', array(
             'type'        => 'text',
-            'label'       => '<strong>' . __( ' Account SID : ', 'ultimate-sms-notifications' ) . '</strong>',
+            'label'       => '<strong>' . __( 'AvlyText API Key : ', 'ultimate-sms-notifications' ) . '</strong>',
             'input_class' => array( 'woousn-text-customs-api' ),
-            'placeholder' => 'ACXXXXXXXXXXXXXXXXXX',
             'required'    => true,
-            'default'     => esc_attr( get_option( 'woo_usn_twilio_account_sid' ) ),
-            'description' => __( "You can retrieve it from your <a href='https://www.twilio.com/referral/bc0mtq'>Twilio Console</a>.", 'ultimate-sms-notifications' ),
+            'placeholder' => 'dMoSJgddqOQyB1tir3cnk5jm2eDNzezesbgpvZ8Knwd58ZDU1FlSTClJgaZupwr4K00',
+            'default'     => esc_attr( $first_data ),
+            'description' => __( "You can retrieve it from your <a href='https://www.avlytext.com/en/login'>AvlyText account</a>.", 'ultimate-sms-notifications' ),
         ) );
-        echo  '<br/>' ;
-        homescript_input_fields( 'woo_usn_twilio_auth_token', array(
+        Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
+        homescript_input_fields( 'woo_usn_creds[second]', array(
             'type'        => 'text',
-            'label'       => '<strong>' . __( '  Auth Token :  ', 'ultimate-sms-notifications' ) . '</strong>',
+            'label'       => '<strong>' . __( 'AvlyText Sender Name : ', 'ultimate-sms-notifications' ) . '</strong>',
             'input_class' => array( 'woousn-text-customs-api' ),
-            'placeholder' => 'YYYYYYYYYYYYYYYY',
+            'placeholder' => 'My Shop',
             'required'    => true,
-            'default'     => esc_attr( get_option( 'woo_usn_twilio_auth_token' ) ),
-            'description' => __( "You can retrieve it from your <a href='https://www.twilio.com/referral/bc0mtq'>Twilio Console</a>.", 'ultimate-sms-notifications' ),
+            'default'     => esc_attr( $second_data ),
+            'description' => __( "Define the name of the sender you would like to have displayed when sending SMS.", 'ultimate-sms-notifications' ),
         ) );
-        echo  '<br/>' ;
-        homescript_input_fields( 'woo_usn_twilio_whatsapp_phone_number', array(
-            'type'        => 'text',
-            'label'       => '<strong>' . __( '  Twilio WhatsApp Phone Number :  ', 'ultimate-sms-notifications' ) . '</strong>',
-            'input_class' => array( 'woousn-text-customs-api' ),
-            'placeholder' => 'whatsapp:+14155238886',
-            'required'    => true,
-            'default'     => esc_attr( get_option( 'woo_usn_twilio_whatsapp_phone_number' ) ),
-            'description' => __( "You can retrieve it from your <a href='https://www.twilio.com/referral/bc0mtq'>Twilio Console</a>.", 'ultimate-sms-notifications' ),
-        ) );
-        _e( "You will need a Account SID and Auth Token in order to use Twilio's API. If you already have an account you can retrieve\n\t\t\tthem from your Twilio Console within the  <a href='www.twilio.com/referral/bc0mtq'>Console</a>. If you have not signed up\n\t\t\tyet, sign up <a href='www.twilio.com/referral/bc0mtq'>here</a>.", 'ultimate-sms-notifications' );
+        Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
         ?>
-        </div>
-        <div id="woo_usn_api_ebulksms" class="wrap" style="display : none;" data-name="ebulksms">
-			<?php 
-        Woo_Usn_UI_Fields::format_html_fields( 'Set eBulkSMS SMS Gateway by providing information necessary in the fields below.<br/>' );
-        echo  '<br/>' ;
-        homescript_input_fields( 'woo_usn_ebulksms_username', array(
-            'type'        => 'text',
-            'label'       => '<strong>' . __( ' eBulkSMS Username : ', 'ultimate-sms-notifications' ) . '</strong>',
-            'input_class' => array( 'woousn-text-customs-api' ),
-            'placeholder' => 'Your username is your email adress',
-            'required'    => true,
-            'default'     => esc_attr( get_option( 'woo_usn_ebulksms_username' ) ),
-        ) );
-        echo  '<br/>' ;
-        homescript_input_fields( 'woo_usn_ebulksms_api_key', array(
-            'type'        => 'text',
-            'label'       => '<strong>' . __( ' eBulkSMS API Key :  ', 'ultimate-sms-notifications' ) . '</strong>',
-            'input_class' => array( 'woousn-text-customs-api' ),
-            'placeholder' => 'YYYYYYYYYYYYYYYY',
-            'required'    => true,
-            'default'     => esc_attr( get_option( 'woo_usn_ebulksms_api_key' ) ),
-            'description' => __( "You can retrieve it from your <a href='https://www.ebulksms.com/users/api?status=newapikey'>eBulkSMS account dashboard.</a>.", 'ultimate-sms-notifications' ),
-        ) );
-        echo  '<br/>' ;
-        homescript_input_fields( 'woo_usn_ebulksms_from_number', array(
-            'type'        => 'text',
-            'label'       => '<strong>' . __( 'eBulkSMS from Phone Number  :  ', 'ultimate-sms-notifications' ) . '</strong>',
-            'input_class' => array( 'woousn-text-customs-api' ),
-            'placeholder' => '234xxxxxxxxxxxx',
-            'required'    => true,
-            'default'     => esc_attr( get_option( 'woo_usn_ebulksms_from_number' ) ),
-            'description' => __( "Phone number that will be used to send the SMS.", 'ultimate-sms-notifications' ),
-        ) );
-        echo  '<br/>' ;
-        _e( "You will need a API Key Token in order to use eBulkSMS Gateway. If you already have an account, you can retrieve\n\t\t\tyour account details from your   <a href='https://www.ebulksms.com/users/api?status=newapikey'>dashboard</a>. If you have not signed up\n\t\t\tyet, sign up <a href='https://www.ebulksms.com/signup'>here</a>.", 'ultimate-sms-notifications' );
-        ?>
-        </div>
+		</div>
+
 
 		<?php 
     }

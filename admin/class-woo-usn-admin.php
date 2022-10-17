@@ -464,6 +464,7 @@ class Woo_Usn_Admin
             if ( !$first_api_key || !$second_api_key ) {
                 return $success;
             }
+            update_option( 'woo_usn_api_choosed', $api_choosed );
             
             if ( 'Twilio' == $api_choosed ) {
                 $twilio_phone_number = sanitize_text_field( $data['woo_usn_twilio_phone_number'] );
@@ -511,6 +512,13 @@ class Woo_Usn_Admin
                 update_option( 'woo_usn_ebulksms_api_key', $second_api_key );
                 update_option( 'woo_usn_ebulksms_from_number', $ebulksms_phone_number );
                 $success = 1;
+            } else {
+                $creds = array(
+                    'first'  => $data['first_api_key'],
+                    'second' => $data['second_api_key'],
+                );
+                update_option( 'woo_usn_creds', $creds );
+                $success = 1;
             }
         
         }
@@ -531,6 +539,7 @@ class Woo_Usn_Admin
         if ( wp_verify_nonce( $security, 'woo-usn-ajax-nonce' ) ) {
             $data = $posted_data['data'];
             $this->api_choosed = sanitize_text_field( $data['api_choosed'] );
+            delete_option( 'woo_usn_api_choosed' );
             
             if ( 'Twilio' == $this->api_choosed ) {
                 delete_option( 'woo_usn_twilio_account_sid' );
@@ -553,6 +562,9 @@ class Woo_Usn_Admin
             } elseif ( "Message Bird" == $this->api_choosed ) {
                 delete_option( 'woo_usn_message_bird_from_number' );
                 delete_option( 'woo_usn_message_bird_api_key' );
+                $return = 1;
+            } else {
+                delete_option( 'woo_usn_creds' );
                 $return = 1;
             }
         

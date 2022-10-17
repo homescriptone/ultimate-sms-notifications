@@ -1211,6 +1211,15 @@ class Woo_Usn_Utility {
 		} elseif ( 'SendChamp' == $api_used ) {
 			$first_api_key  = get_option( 'woo_usn_sendchamp_from_number' );
 			$second_api_key = get_option( 'woo_usn_sendchamp_api_key' );
+		} else {
+			$creds = get_option( 'woo_usn_creds' );
+			$first_api_key = false;
+			$second_api_key = false;
+			if ( isset( $creds ) && is_array( $creds ) ) {
+				$first_api_key = $creds['first'];
+				$second_api_key = $creds['second'];
+			}
+			
 		}
 		$api_credentials_data = array_merge(
 			$api_credentials_data,

@@ -1,6 +1,6 @@
 === Ultimate SMS & WhatsApp Notifications for WooCommerce ===  
 Contributors: homescript  , freemius  
-Tags: sms, woocommerce, whatsapp, orders notifications
+Tags: sms, woocommerce, whatsapp, orders notifications, woocommerce orders, ecommerce, e-commerce, marketing  
 Donate link: https://buymeacoffee.com/homescriptone/  
 Requires at least: 4.4  
 Tested up to: 6.0   
@@ -8,7 +8,7 @@ Stable tag: 1.9.5
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt    
 
-Just another WooCommerce SMS & WhatsApp notifications plugin.  
+Send WooCommerce Orders Notifications and more by using SMS & WhatsApp.  
 
 == Description ==
 

@@ -17,7 +17,7 @@ class Woo_Usn_Admin
 {
     private  $plugin_name ;
     private  $version ;
-    private  $api_choosed = 'Telesign' ;
+    private  $api_choosed = 'Twilio' ;
     private  $usn_api ;
     public function __construct( $plugin_name, $version )
     {
@@ -71,6 +71,7 @@ class Woo_Usn_Admin
                 $this->version,
                 'all'
             );
+            wp_enqueue_editor();
         }
     
     }
@@ -81,7 +82,7 @@ class Woo_Usn_Admin
         $woo_usn_ajax_variables = array(
             'woo_usn_ajax_url'      => admin_url( 'admin-ajax.php' ),
             'woo_usn_ajax_security' => wp_create_nonce( 'woo-usn-ajax-nonce' ),
-            'woo_usn_sms_api_used'  => ( get_option( 'woo_usn_api_choosed' ) == '' ? 'Telesign' : get_option( 'woo_usn_api_choosed' ) ),
+            'woo_usn_sms_api_used'  => ( get_option( 'woo_usn_api_choosed' ) == '' ? 'Twilio' : get_option( 'woo_usn_api_choosed' ) ),
         );
         wp_enqueue_script(
             $this->plugin_name,
@@ -132,13 +133,6 @@ class Woo_Usn_Admin
         }
         
         wp_localize_script( $this->plugin_name, 'woo_usn_ajax_object', $woo_usn_ajax_variables );
-        wp_enqueue_script(
-            'woo-usn-jquery-serializeJSON',
-            plugin_dir_url( __FILE__ ) . 'js/jquery-serializeJSON.js',
-            array( 'jquery' ),
-            $this->version,
-            false
-        );
         // settings page.
         
         if ( $usn_utility->is_usn_page() ) {
@@ -170,7 +164,7 @@ class Woo_Usn_Admin
                 array(
                 'jquery',
                 'jquery-ui-tooltip',
-                'woo-usn-jquery-serializeJSON',
+                'serializejson',
                 'wp-hooks',
                 $this->plugin_name . '-select2',
                 $this->plugin_name,
@@ -461,9 +455,6 @@ class Woo_Usn_Admin
             $api_choosed = sanitize_text_field( $data['api_choosed'] );
             $first_api_key = sanitize_text_field( $data['first_api_key'] );
             $second_api_key = sanitize_text_field( $data['second_api_key'] );
-            if ( !$first_api_key || !$second_api_key ) {
-                return $success;
-            }
             update_option( 'woo_usn_api_choosed', $api_choosed );
             
             if ( 'Twilio' == $api_choosed ) {

@@ -14,7 +14,12 @@ if ( ! function_exists( 'homescript_input_fields' ) ) {
 	 *
 	 * @return string
 	 */
-	function homescript_input_fields( $key, $args, $value = null ) {
+	function homescript_input_fields( $key, $args, $value = null, $uniqkey = false ) {
+
+		$id = $key;
+		if ( $uniqkey ) {
+			$id = uniqid();
+		}
 
 		$defaults = array(
 			'type'              => 'text',
@@ -24,7 +29,7 @@ if ( ! function_exists( 'homescript_input_fields' ) ) {
 			'maxlength'         => false,
 			'required'          => false,
 			'autocomplete'      => false,
-			'id'                => $key,
+			'id'                => $id,
 			'class'             => array(),
 			'label_class'       => array(),
 			'input_class'       => array(),

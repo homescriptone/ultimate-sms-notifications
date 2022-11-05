@@ -41,6 +41,7 @@ if ( !function_exists( 'usn_fs' ) ) {
     usn_fs();
     do_action( 'usn_fs_loaded' );
     do_action( '_loaded' );
+    usn_fs()->add_filter( 'uninstall_reasons', array( 'Woo_Usn_Admin_Settings', 'get_un_reasons' ) );
 }
 
 usn_fs()->add_action( 'after_uninstall', 'usn_fs_uninstall_cleanup' );

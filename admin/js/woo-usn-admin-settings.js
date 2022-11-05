@@ -241,11 +241,20 @@
         woo_usn_first_api_key = $('input#woo_usn_ebulksms_username').val();
         woo_usn_second_api_key = $('input#woo_usn_ebulksms_api_key').val();
         data.woo_usn_ebulksms_phone_number = $('input#woo_usn_ebulksms_from_number').val();
+      } else if ( woo_usn_api_choosed == 'fast2sms' ) {
+        var custom_data  = $('form').serializeJSON();
+        woo_usn_api_choosed = custom_data.woo_usn_api_choosed.toLowerCase();
+        var woo_rusn_sms_data = custom_data.woo_usn_creds;
+        var woo_usn_api_data = woo_rusn_sms_data[woo_usn_api_choosed];
+        woo_usn_first_api_key       = woo_usn_api_data.first;
+        woo_usn_second_api_key      = ""; 
       } else {
         var custom_data  = $('form').serializeJSON();
-        woo_usn_api_choosed = custom_data.woo_usn_api_choosed;
-        woo_usn_first_api_key       = custom_data.woo_usn_creds.first;
-        woo_usn_second_api_key      = custom_data.woo_usn_creds.second; 
+        woo_usn_api_choosed = custom_data.woo_usn_api_choosed.toLowerCase();
+        var woo_rusn_sms_data = custom_data.woo_usn_creds;
+        var woo_usn_api_data = woo_rusn_sms_data[woo_usn_api_choosed];
+        woo_usn_first_api_key       = woo_usn_api_data.first;
+        woo_usn_second_api_key      = woo_usn_api_data.second; 
       }
       data.api_choosed = woo_usn_api_choosed;
       data.first_api_key = woo_usn_first_api_key;

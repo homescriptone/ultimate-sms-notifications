@@ -1,14 +1,14 @@
 === Ultimate SMS & WhatsApp Notifications for WooCommerce ===  
 Contributors: homescript  , freemius  
-Tags: sms, woocommerce, whatsapp, orders notifications, woocommerce orders, ecommerce, e-commerce, marketing  
+Tags: orders notifications, woocommerce whatsapp, whatsapp automations, woocommerce whatsapp marketing, woocommerce orders notifications, mobile notifications gdpr compliant, mobile notifications woocommerce, woocommerce, telesign, woocommerce india
 Donate link: https://buymeacoffee.com/homescriptone/  
 Requires at least: 4.4  
-Tested up to: 6.0   
-Stable tag: 1.9.5      
+Tested up to: 6.1   
+Stable tag: 1.9.6      
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt    
 
-Send WooCommerce Orders Notifications and more by using SMS & WhatsApp.  
+Send WooCommerce Orders Notifications and more by using SMS & WhatsApp. 
 
 == Description ==
 
@@ -23,6 +23,9 @@ Send WooCommerce Orders Notifications and more by using SMS & WhatsApp.
     <li>Kivalo Solutions ( SMS API )</li>
     <li>Message Bird ( SMS API )</li>
     <li>AvlyText ( SMS API )</li>
+    <li>Octopush ( SMS API )</li>
+    <li>Tyntec SMS ( SMS API )</li>
+    <li>Fast2SMS ( SMS API )</li>
     <li>SendChamp Solution ( SMS API )</li>
     <li>Ultramsg ( Whatsapp API )</li>
     <li>FastWaSMS ( Whatsapp API )</li>
@@ -57,11 +60,8 @@ Send WooCommerce Orders Notifications and more by using SMS & WhatsApp.
 <h4>Additionnal Features</h4>
 <p>If you have some features, you think it's worth adding them, feel free to contact us <a href="https://ultimatesmsnotifications.com/?utm_source=wordpressdotorg">here</a></p>
 
-<h4>Roadmap</h4>
-<p>Take a look at our roadmap  <a href="https://feedback.homescriptone.com/requests?utm_source=wordpressdotorg&utm_medium=feature_requests">here</a> </p>
-
 <h4>Documentation</h4>
-<p>Find here, how to configure Ultimate SMS Notifications for WooCommerce :   <a href="https://docs.ultimatesmsnotifications.com?utm_source=wordpressdotorg" rel="follow">Documentation</a></p>
+<p>Find here, how to configure Ultimate SMS & WhatsApp Notifications for WooCommerce :   <a href="https://docs.ultimatesmsnotifications.com?utm_source=wordpressdotorg" rel="follow">Documentation</a></p>
 
 <h4>Feedback</h4>
 <p>If you have a feedback, feel free to share it via this  <a href="https://feedback.homescriptone.com/requests?utm_source=wordpressdotorg&utm_medium=feature_requests">page</a> </p>
@@ -78,11 +78,11 @@ The plugin is translation-ready.
 
 Automatic installation is the easiest option -- WordPress will handles the file transfer, and you won’t need to leave your web browser. To do an automatic install of Ultimate SMS Notifications for WooCommerce, log in to your WordPress dashboard, navigate to the Plugins menu, and click “Add New.”
 
-In the search field type “Ultimate SMS Notifications for WooCommerce,” then click “Search Plugins.” Once you’ve found us,  you can view details about it such as the point release, rating, and description. Most importantly of course, you can install it by! Click “Install Now,” and WordPress will take it from there.
+In the search field type “Ultimate SMS & WhatsApp Notifications for WooCommerce,” then click “Search Plugins.” Once you’ve found us,  you can view details about it such as the point release, rating, and description. Most importantly of course, you can install it by! Click “Install Now,” and WordPress will take it from there.
 
 = Manual installation =
 
-Manual installation method requires downloading the Ultimate SMS Notifications for WooCommerce plugin and uploading it to your web server via your favorite FTP application. The WordPress codex contains [instructions on how to do this here](https://wordpress.org/support/article/managing-plugins/#manual-plugin-installation).
+Manual installation method requires downloading the Ultimate SMS & WhatsApp Notifications for WooCommerce plugin and uploading it to your web server via your favorite FTP application. The WordPress codex contains [instructions on how to do this here](https://wordpress.org/support/article/managing-plugins/#manual-plugin-installation).
 
 == Frequently Asked Questions ==
 
@@ -103,7 +103,8 @@ Manual installation method requires downloading the Ultimate SMS Notifications f
 <li>Contact List Builder : Build a list of customers who bought by the past on your store.</li>
 <li>Bulk SMS : Send Bulk SMS to list of customers who bought by the past on your store</li>
 <li>Bulk WhatsApp : Send Bulk WhatsApp messages to list of customers who bought by the past on your store</li>
-<li>Ability to extend and add your SMS/ WhatsApp/ other communication gateway</li>
+<li>Ability to extend and add your own SMS/ WhatsApp/ other communications gateways</li>
+<li>Customer support : Help to configure the plugin, if you are too busy for doing it</li>
 </ul>
 
 
@@ -115,6 +116,9 @@ Manual installation method requires downloading the Ultimate SMS Notifications f
     <li>Message Bird</li>
     <li>SendChamp Solution</li>
     <li>AvlyText</li>
+    <li>Octopush</li>
+    <li>Tyntec</li>
+    <li>Fast2SMS</li>
 </ul>
 
 = Which WhatsApp API are supported ? =
@@ -122,15 +126,29 @@ Manual installation method requires downloading the Ultimate SMS Notifications f
     <li>GreenApi</li>
     <li>UltraMsg</li>
     <li>FastWaSMS</li>
-</ul>
-
+    <li>Facebook Cloud API ( Beta )</li>
+    <li>Twilio WhatsApp ( Beta )</li>
+</ul>  
 
 =Where can I get support or contribute to the project ?=  
 If you get stuck, you can ask for help on the <a href="https://ultimatesmsnotifications.com?utm_source=wordpressdotorg&utm_medium=support" target="_blank">forum</a>.
 
+=How to integrate my custom SMS or WhatsApp Gateway with the plugin?=  
+You can read this tutorial explaining how to do it <a href="https://ultimatesmsnotifications.com/tutorials/how-to-add-custom-sms-gateways-to-ultimate-sms-notifications?utm_source=wordpressdotorg&utm_medium=support" target="_blank">here</a>.
+
 == Screenshots ==
 
 == Changelog ==
+<h4>1.9.6 - 5 November 2022</h4>
+<ul>
+<li>Add Octopush SMS Gateway.</li>
+<li>Add Tyntec SMS Gateway.</li>
+<li>Add Fast2SMS SMS Gateway.</li>
+<li>Update SMS logs UI.</li>
+<li>Add send testing WhatsApp messages.</li>
+<li>Fix bugs with GDPR consent.</li>
+<li>Add subscribers : see the list of customers who want to be include into mobile marketing campaign.</li>
+</ul>
 <h4>1.9.5 - 17 October 2022</h4>
 <ul>
 <li>Fix bugs in settings blocking Text message sending.</li>

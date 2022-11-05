@@ -72,36 +72,89 @@ class Woo_Usn_SMS
             );
             $url = get_option( 'woo_usn_sendchamp_domain_url' );
             $data = array(
-                'to'          => [ $to ],
+                'to'          => array( $to ),
                 'message'     => $body,
                 'sender_name' => $id,
                 'route'       => 'dnd',
             );
-        } elseif ( 'AvlyText' === $this->sms_api->api_used ) {
-            $url = "https://api.avlytext.com/v1/sms?api_key=" . $id;
+        } elseif ( 'avlyText' === $this->sms_api->api_used ) {
+            $url = 'https://api.avlytext.com/v1/sms?api_key=' . $id;
             $data = array(
                 'sender'    => $token,
                 'recipient' => $to,
                 'text'      => $body,
             );
+        } elseif ( 'octopush' === $this->sms_api->api_used ) {
+            $headers = array(
+                'Content-Type' => 'application/json',
+                'api-login'    => $token,
+                'api-key'      => $id,
+            );
+            $url = 'https://api.octopush.com/v1/public/sms-campaign/send';
+            $data = wp_json_encode( array(
+                'purpose'    => 'wholesale',
+                'type'       => 'sms_premium',
+                'text'       => $body,
+                'sender'     => apply_filters( 'woo_usn_octopush_sender_name', get_bloginfo( 'name' ) ),
+                'recipients' => array( array(
+                "phone_number" => "+" . $to,
+            ) ),
+            ) );
+        } elseif ( 'tyntecsms' === $this->sms_api->api_used ) {
+            $headers = array(
+                'Content-Type' => 'application/json',
+                'apikey'       => $id,
+            );
+            $data = wp_json_encode( array(
+                'from'    => $token,
+                'to'      => $to,
+                'message' => $body,
+            ) );
+            $url = 'https://api.tyntec.com/messaging/v1/sms';
+        } elseif ( 'fast2sms' === $this->sms_api->api_used ) {
+            $headers = array(
+                'Content-Type'  => 'application/json',
+                'Authorization' => $id,
+            );
+            $data = wp_json_encode( array(
+                'from'    => $token,
+                'message' => $body,
+                'route'   => 'q',
+                'numbers' => $to,
+            ) );
+            $url = "https://www.fast2sms.com/dev/bulkV2";
         }
         
         $result = wp_remote_post( $url, array(
             'body'    => $data,
             'headers' => $headers,
             'timeout' => 65,
+            'method'  => 'POST',
         ) );
         $body_result = wp_remote_retrieve_body( $result );
+        $body_status = wp_remote_retrieve_response_code( $result );
+        if ( false == preg_match( '/^2([0-9]{1})([0-9]{1})$/', $body_status ) ) {
+            
+            if ( function_exists( 'wc_get_logger' ) ) {
+                $wc_log = wc_get_logger();
+                $wc_log->error( $this->sms_api->api_used . ' error : ' . print_r( $body_result, true ), array(
+                    'source' => 'ultimate-sms-notifications',
+                ) );
+            } else {
+                Woo_Usn_Utility::write_log( $this->sms_api->api_used . ' error : ' . print_r( $body_result, true ) );
+            }
+        
+        }
         
         if ( is_object( $body_result ) ) {
             $decoded = get_object_vars( $body_result );
         } else {
             $decoded = json_decode( $body_result );
             
-            if ( "SendChamp" == $this->sms_api->api_used ) {
+            if ( 'SendChamp' == $this->sms_api->api_used ) {
                 $decode_sendchmap_data = get_object_vars( $decoded );
                 
-                if ( $decode_sendchmap_data['status'] == "success" ) {
+                if ( $decode_sendchmap_data['status'] == 'success' ) {
                     return 200;
                 } else {
                     
@@ -125,8 +178,12 @@ class Woo_Usn_SMS
         if ( 'Twilio' === $this->sms_api->api_used ) {
             return $decoded->status;
         } elseif ( 'Message Bird' === $this->sms_api->api_used ) {
-            $recipients = current( $decoded->recipients->items );
-            $status = $recipients->status;
+            
+            if ( is_object( $decoded->recipients ) ) {
+                $recipients = current( $decoded->recipients->items );
+                $status = $recipients->status;
+            }
+            
             
             if ( null === $status ) {
                 return 400;
@@ -134,7 +191,7 @@ class Woo_Usn_SMS
                 return 200;
             }
         
-        } elseif ( 'AvlyText' === $this->sms_api->api_used ) {
+        } elseif ( 'avlyText' === $this->sms_api->api_used ) {
             
             if ( isset( $decoded->id ) ) {
                 return 200;
@@ -150,6 +207,55 @@ class Woo_Usn_SMS
                 }
                 
                 return 400;
+            }
+        
+        } elseif ( 'octopush' === $this->sms_api->api_used || 'tyntecsms' === $this->sms_api->api_used ) {
+            $body_code = wp_remote_retrieve_response_code( $result );
+            
+            if ( preg_match( '/^2([0-9]{1})([0-9]{1})$/', $body_code ) ) {
+                $status_code = 200;
+            } else {
+                $status_code = 400;
+                $body_response_result = wp_remote_retrieve_body( $result );
+                
+                if ( function_exists( 'wc_get_logger' ) ) {
+                    $wc_log = wc_get_logger();
+                    $wc_log->error( $this->sms_api->api_used . ' error code : ' . print_r( $decoded, true ), array(
+                        'source' => 'ultimate-sms-notifications',
+                    ) );
+                    $wc_log->error( $this->sms_api->api_used . ' error message : ' . print_r( $body_response_result, true ), array(
+                        'source' => 'ultimate-sms-notifications',
+                    ) );
+                } else {
+                    Woo_Usn_Utility::write_log( $this->sms_api->api_used . ' error code :' . print_r( $decoded, true ) );
+                    Woo_Usn_Utility::write_log( $this->sms_api->api_used . ' error message :' . print_r( $body_response_result, true ) );
+                }
+            
+            }
+            
+            return $status_code;
+        } elseif ( 'fast2sms' === $this->sms_api->api_used ) {
+            $status_code = 400;
+            
+            if ( isset( $decoded->return ) && $decoded->return ) {
+                $status_code = 200;
+            } else {
+                $status_code = 400;
+                $body_response_result = wp_remote_retrieve_body( $result );
+                
+                if ( function_exists( 'wc_get_logger' ) ) {
+                    $wc_log = wc_get_logger();
+                    $wc_log->error( $this->sms_api->api_used . ' error code : ' . print_r( $decoded, true ), array(
+                        'source' => 'ultimate-sms-notifications',
+                    ) );
+                    $wc_log->error( $this->sms_api->api_used . ' error message : ' . print_r( $body_response_result, true ), array(
+                        'source' => 'ultimate-sms-notifications',
+                    ) );
+                } else {
+                    Woo_Usn_Utility::write_log( $this->sms_api->api_used . ' error code :' . print_r( $decoded, true ) );
+                    Woo_Usn_Utility::write_log( $this->sms_api->api_used . ' error message :' . print_r( $body_response_result, true ) );
+                }
+            
             }
         
         } else {
@@ -178,7 +284,17 @@ class Woo_Usn_SMS
         $phone_number = str_ireplace( ' ', '', $phone_number );
         $skip_sms = false;
         $sms_api = $this->sms_api->api_used;
-        if ( !$skip_sms ) {
+        $woo_usn_options = get_option( 'woo_usn_options' );
+        
+        if ( isset( $woo_usn_options['woo_usn_sms_consent'] ) ) {
+            $user_id = get_current_user_id();
+            $user_allowed_sms = get_user_meta( $user_id, 'woo_usn_allow_sms_sending', true );
+            if ( 'on' !== $user_allowed_sms ) {
+                return;
+            }
+        }
+        
+        if ( apply_filters( 'woo_usn_send_only_sms', !$skip_sms ) ) {
             
             if ( 'Twilio' === $sms_api ) {
                 $from_number = get_option( 'woo_usn_twilio_phone_number' );
@@ -234,6 +350,30 @@ class Woo_Usn_SMS
                 $status = $this->send_sms_with_rest(
                     $this->sms_api->first_api_key,
                     $this->sms_api->second_api_key,
+                    $phone_number,
+                    $message_to_send,
+                    false
+                );
+            } elseif ( 'octopush' === $sms_api ) {
+                $status = $this->send_sms_with_rest(
+                    $this->sms_api->first_api_key,
+                    $this->sms_api->second_api_key,
+                    $phone_number,
+                    $message_to_send,
+                    false
+                );
+            } elseif ( 'tyntecsms' === $sms_api ) {
+                $status = $this->send_sms_with_rest(
+                    $this->sms_api->first_api_key,
+                    $this->sms_api->second_api_key,
+                    $phone_number,
+                    $message_to_send,
+                    false
+                );
+            } elseif ( 'fast2sms' === $sms_api ) {
+                $status = $this->send_sms_with_rest(
+                    $this->sms_api->first_api_key,
+                    null,
                     $phone_number,
                     $message_to_send,
                     false
@@ -304,7 +444,7 @@ class Woo_Usn_SMS
     
     public static function send_sms_to_new_customers( $customer_obj, $data )
     {
-        //prevent multiple sms send after user creation.
+        // prevent multiple sms send after user creation.
         if ( $customer_obj->get_date_created() != null ) {
             return;
         }

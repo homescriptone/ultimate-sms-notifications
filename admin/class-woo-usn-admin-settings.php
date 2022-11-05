@@ -428,56 +428,23 @@ class Woo_Usn_Admin_Settings
                 '',
             )
         );
-        // add_settings_field(
-        // 	'woo_usn_sms_consent',                      // ID used to identify the field throughout the theme.
-        // 	__( 'Get customer approbation before sending him SMS : ', 'ultimate-sms-notifications' ),
-        // 	__CLASS__ . '::display_consent_sms',   // The name of the function responsible for rendering the option interface.
-        // 	'woo_usn_options',                          // The page on which this option will be displayed.
-        // 	'woo_usn_options_page',         // The name of the section to which this field belongs.
-        // 	array(                              // The array of arguments to pass to the callback. In this case, just a description.
-        // 		'',
-        // 	)
-        // );
-        // add_settings_field(
-        // 	'woo_usn_sms_consent_text_to_display',                      // ID used to identify the field throughout the theme.
-        // 	'',                         // The label to the left of the option interface element.
-        // 	__CLASS__ . '::display_consent_text_to_display',   // The name of the function responsible for rendering the option interface.
-        // 	'woo_usn_options',                          // The page on which this option will be displayed.
-        // 	'woo_usn_options_page',         // The name of the section to which this field belongs.
-        // 	array(                              // The array of arguments to pass to the callback. In this case, just a description.
-        // 		'class' => 'woo-usn-customer-consent',
-        // 	)
-        // );
+        add_settings_field(
+            'woo_usn_sms_consent',
+            // ID used to identify the field throughout the theme.
+            __( 'Get customer approbation before sending him SMS : ', 'ultimate-sms-notifications' ),
+            __CLASS__ . '::display_consent_sms__premium_only',
+            // The name of the function responsible for rendering the option interface.
+            'woo_usn_options',
+            // The page on which this option will be displayed.
+            'woo_usn_options_page',
+            // The name of the section to which this field belongs.
+            array(
+                // The array of arguments to pass to the callback. In this case, just a description.
+                '',
+            )
+        );
         do_action( 'woo_usn_options_settings_field' );
         register_setting( 'woo_usn_options', 'woo_usn_options' );
-    }
-    
-    public static function display_consent_sms()
-    {
-        $options = get_option( 'woo_usn_options' );
-        $checked = 1;
-        if ( !isset( $options['woo_usn_sms_consent'] ) ) {
-            $checked = 0;
-        }
-        homescript_input_fields( 'woo_usn_options[woo_usn_sms_consent]', array(
-            'type'        => 'checkbox',
-            'label'       => __( 'Enable/Disable', 'ultimate-sms-notifications' ),
-            'description' => __( '<br/>By enabling, the customer decides whether  to receive any kinds of SMS.', 'ultimate-sms-notifications' ),
-        ), $checked );
-    }
-    
-    public static function display_consent_text_to_display()
-    {
-        $options = get_option( 'woo_usn_options' );
-        $settings = array(
-            'textarea_name' => 'woo_usn_sms_consent_text_to_display',
-            'media_buttons' => false,
-        );
-        $content = __( 'I would like to receive marketing SMS on my phone number.', 'ultimmate-sms-notifications' );
-        if ( !empty($options['woo_usn_sms_consent_text_to_display']) ) {
-            $content = $options['woo_usn_sms_consent_text_to_display'];
-        }
-        wp_editor( $content, 'woo_usn_sms_consent_text_to_display', $settings );
     }
     
     public static function messages_to_vendor()
@@ -566,7 +533,7 @@ class Woo_Usn_Admin_Settings
                 'placeholder' => 'FFFFFFFF-EEEE-DDDD-1234-AB1234567890',
                 'required'    => true,
                 'default'     => esc_attr( get_option( 'woo_usn_telesign_custom_id' ) ),
-                'description' => __( "You can retrieve it from your <a href='https://portal.telesign.com/login'>Telesign Portal</a>.", 'ultimate-sms-notifications' ),
+                'description' => __( "You can retrieve it from your <a href='https://portal.telesign.com/login' target='__blank'>Telesign Portal</a>.", 'ultimate-sms-notifications' ),
             ) );
             Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
             homescript_input_fields( 'woo_usn_telesign_api_key', array(
@@ -576,7 +543,7 @@ class Woo_Usn_Admin_Settings
                 'required'    => true,
                 'placeholder' => 'EXAMPLE----TE8sTgg45yusumoN6BYsBVkh+yRJ5czgsnCehZaOYldPJdmFh6NeX8kunZ2zU1YWaUw/0wV6xfw==',
                 'default'     => esc_attr( get_option( 'woo_usn_telesign_api_key' ) ),
-                'description' => __( "You can retrieve it from your <a href='https://portal.telesign.com/login'>Telesign Portal</a>.", 'ultimate-sms-notifications' ),
+                'description' => __( "You can retrieve it from your <a href='https://portal.telesign.com/login' target='__blank'>Telesign Portal</a>.", 'ultimate-sms-notifications' ),
             ) );
             Woo_Usn_UI_Fields::format_html_fields( "You will need a Customer ID and API Key in order to use TeleSign’s API. If you already have an account you can retrieve\n\t\tthem from your account dashboard within the  <a href='https://portal.telesign.com/login'>Portal</a>. If you have not signed up\n\t\tyet, sign up <a href='https://portal.telesign.com/signup'>here</a>." );
             ?>
@@ -615,7 +582,7 @@ class Woo_Usn_Admin_Settings
                 'default'     => esc_attr( get_option( 'woo_usn_twilio_phone_number' ) ),
                 'description' => __( "You can retrieve it from your <a href='https://www.twilio.com/referral/bc0mtq'>Twilio Console</a>.", 'ultimate-sms-notifications' ),
             ) );
-            _e( "You will need a Account SID and Auth Token in order to use Twilio's API. If you already have an account you can retrieve\n\t\t\tthem from your Twilio Console within the  <a href='www.twilio.com/referral/bc0mtq'>Console</a>. If you have not signed up\n\t\t\tyet, sign up <a href='www.twilio.com/referral/bc0mtq'>here</a>.", 'ultimate-sms-notifications' );
+            _e( "You will need a Account SID and Auth Token in order to use Twilio's API. If you already have an account you can retrieve\n\t\t\tthem from your Twilio Console within the  <a href='www.twilio.com/referral/bc0mtq' target='__blank'>Console</a>. If you have not signed up\n\t\t\tyet, sign up <a href='www.twilio.com/referral/bc0mtq' target='__blank'>here</a>.", 'ultimate-sms-notifications' );
             ?>
                 </div>
 				<?php 
@@ -961,7 +928,10 @@ class Woo_Usn_Admin_Settings
             'Kivalo',
             'Message Bird',
             'SendChamp',
-            'AvlyText'
+            'AvlyText',
+            'Octopush',
+            'tyntecsms' => 'Tyntec SMS',
+            'fast2sms' => 'Fast2SMS'
         );
         $api_name = array_merge( $api_name, $list );
         return $api_name;
@@ -986,7 +956,7 @@ class Woo_Usn_Admin_Settings
             'placeholder' => '233xxxxxxx',
             'required'    => true,
             'default'     => esc_attr( get_option( 'woo_usn_kivalo_from_phone_number' ) ),
-            'description' => __( "You can retrieve it from your <a href='https://sms.kivalosolutions.com'>Kivalo account</a>.", 'ultimate-sms-notifications' ),
+            'description' => __( "You can retrieve it from your <a href='https://sms.kivalosolutions.com' target='__blank'>Kivalo account</a>.", 'ultimate-sms-notifications' ),
         ) );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
         homescript_input_fields( 'woo_usn_kivalo_api_key', array(
@@ -996,7 +966,7 @@ class Woo_Usn_Admin_Settings
             'required'    => true,
             'placeholder' => '000000xxxxxxxxxx',
             'default'     => esc_attr( get_option( 'woo_usn_kivalo_api_key' ) ),
-            'description' => __( "You can retrieve it from your <a href='https://sms.kivalosolutions.com'>Kivalo account</a>.", 'ultimate-sms-notifications' ),
+            'description' => __( "You can retrieve it from your <a href='https://sms.kivalosolutions.com' target='__blank'>Kivalo account</a>.", 'ultimate-sms-notifications' ),
         ) );
         Woo_Usn_UI_Fields::format_html_fields( "You will need a Kivalo From Phone Number and API Key in order to use Kivalo’s API. If you already have an account you can retrieve\n\t\tthem from your account dashboard within the  <a href='https://sms.kivalosolutions.com'>Portal</a>. If you have not signed up\n\t\tyet, sign up <a href='https://sms.kivalosolutions.com/signup'>here</a>." );
         ?>
@@ -1013,7 +983,7 @@ class Woo_Usn_Admin_Settings
             'placeholder' => '0ABCxxxxxxxxxx',
             'required'    => true,
             'default'     => esc_attr( get_option( 'woo_usn_waapi_client_id' ) ),
-            'description' => __( "You can retrieve it from your <a href='https://checkout.waapi.co/api/affurl/0elOEJ0M4As1ENZ1n/HLKBxj10HmbMiA8o?target=Vpas2KguYoFAg08o'>Waapi account</a>.", 'ultimate-sms-notifications' ),
+            'description' => __( "You can retrieve it from your <a href='https://checkout.waapi.co/api/affurl/0elOEJ0M4As1ENZ1n/HLKBxj10HmbMiA8o?target=Vpas2KguYoFAg08o' target='__blank'>Waapi account</a>.", 'ultimate-sms-notifications' ),
         ) );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
         homescript_input_fields( 'woo_usn_waapi_instance_id', array(
@@ -1023,7 +993,7 @@ class Woo_Usn_Admin_Settings
             'required'    => true,
             'placeholder' => '000000xxxxxxxxxx',
             'default'     => esc_attr( get_option( 'woo_usn_waapi_instance_id' ) ),
-            'description' => __( "You can retrieve it from your <a href='https://checkout.waapi.co/api/affurl/0elOEJ0M4As1ENZ1n/HLKBxj10HmbMiA8o?target=Vpas2KguYoFAg08o'>Waapi account</a>.", 'ultimate-sms-notifications' ),
+            'description' => __( "You can retrieve it from your <a href='https://checkout.waapi.co/api/affurl/0elOEJ0M4As1ENZ1n/HLKBxj10HmbMiA8o?target=Vpas2KguYoFAg08o' target='__blank'>Waapi account</a>.", 'ultimate-sms-notifications' ),
         ) );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
         homescript_input_fields( 'woo_usn_waapi_domain_url', array(
@@ -1033,10 +1003,10 @@ class Woo_Usn_Admin_Settings
             'required'    => true,
             'placeholder' => 'https://apiv3.waapi.co',
             'default'     => esc_attr( get_option( 'woo_usn_waapi_domain_url' ) ),
-            'description' => __( "You can retrieve it from your <a href='https://checkout.waapi.co/api/affurl/0elOEJ0M4As1ENZ1n/HLKBxj10HmbMiA8o?target=Vpas2KguYoFAg08o'>Waapi account</a>.", 'ultimate-sms-notifications' ),
+            'description' => __( "You can retrieve it from your <a href='https://checkout.waapi.co/api/affurl/0elOEJ0M4As1ENZ1n/HLKBxj10HmbMiA8o?target=Vpas2KguYoFAg08o' target='__blank'>Waapi account</a>.", 'ultimate-sms-notifications' ),
         ) );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
-        Woo_Usn_UI_Fields::format_html_fields( "You will need a Waapi Client ID and Instance ID in order to send Whatsapp messages. If you already have an account you can retrieve\n\t\tthem from your account <a href='https://checkout.waapi.co/api/affurl/0elOEJ0M4As1ENZ1n/HLKBxj10HmbMiA8o?target=Vpas2KguYoFAg08o'>dashboard</a>  or watching this video <a href ='https://www.youtube.com/watch?v=zoaGETg0eZY'>here</a> to see how to do." );
+        Woo_Usn_UI_Fields::format_html_fields( "You will need a Waapi Client ID and Instance ID in order to send Whatsapp messages. If you already have an account you can retrieve\n\t\tthem from your account <a href='https://checkout.waapi.co/api/affurl/0elOEJ0M4As1ENZ1n/HLKBxj10HmbMiA8o?target=Vpas2KguYoFAg08o' target='__blank'>dashboard</a>  or watching this video <a href ='https://www.youtube.com/watch?v=zoaGETg0eZY'>here</a> to see how to do." );
         ?>
         </div>
         <div id="woo_usn_api_messagebird" class="wrap" data-name="messagebird" style="display:none;">
@@ -1050,7 +1020,7 @@ class Woo_Usn_Admin_Settings
             'placeholder' => 'My Shop',
             'required'    => true,
             'default'     => esc_attr( get_option( 'woo_usn_message_bird_from_number' ) ),
-            'description' => __( "You can retrieve it from your <a href='https://dashboard.messagebird.com/en/developers/settings'>Message Bird account</a>.", 'ultimate-sms-notifications' ),
+            'description' => __( "You can retrieve it from your <a href='https://dashboard.messagebird.com/en/developers/settings' target='__blank'>Message Bird account</a>.", 'ultimate-sms-notifications' ),
         ) );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
         homescript_input_fields( 'woo_usn_message_bird_api_key', array(
@@ -1060,11 +1030,11 @@ class Woo_Usn_Admin_Settings
             'required'    => true,
             'placeholder' => 'ABCDEFGxxxxxxxxxx',
             'default'     => esc_attr( get_option( 'woo_usn_message_bird_api_key' ) ),
-            'description' => __( "You can retrieve it from your <a href='https://dashboard.messagebird.com/en/developers/settings'>Message Bird account</a>.", 'ultimate-sms-notifications' ),
+            'description' => __( "You can retrieve it from your <a href='https://dashboard.messagebird.com/en/developers/settings' target='__blank'>Message Bird account</a>.", 'ultimate-sms-notifications' ),
         ) );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
-        Woo_Usn_UI_Fields::format_html_fields( "You will need a Message Bird <a href='https://dashboard.messagebird.com/en/developers/settings'> API Key </a> and <a href='https://support.messagebird.com/hc/en-us/articles/115002628665-What-is-the-originator-#:~:text=An%20originator%20is%20the%20name,which%20it%20has%20been%20sent'> Originator </a> in order to send SMS. " );
+        Woo_Usn_UI_Fields::format_html_fields( "You will need a Message Bird <a href='https://dashboard.messagebird.com/en/developers/settings' target='__blank'> API Key </a> and <a href='https://support.messagebird.com/hc/en-us/articles/115002628665-What-is-the-originator-#:~:text=An%20originator%20is%20the%20name,which%20it%20has%20been%20sent'> Originator </a> in order to send SMS. " );
         ?>
         </div>
         <div id="woo_usn_api_sendchamp" class="wrap" data-name="sendchamp" style="display:none;">
@@ -1078,7 +1048,7 @@ class Woo_Usn_Admin_Settings
             'required'    => true,
             'placeholder' => 'https://api.sendchamp.com/api/v1/sms/send/',
             'default'     => esc_attr( get_option( 'woo_usn_sendchamp_domain_url', "https://api.sendchamp.com/api/v1/sms/send/" ) ),
-            'description' => __( "You can retrieve it from your <a href='https://my.sendchamp.com/accountSettings'>SendChamp account</a>.", 'ultimate-sms-notifications' ),
+            'description' => __( "You can retrieve it from your <a href='https://my.sendchamp.com/accountSettings' target='__blank'>SendChamp account</a>.", 'ultimate-sms-notifications' ),
         ) );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
         homescript_input_fields( 'woo_usn_sendchamp_from_number', array(
@@ -1088,7 +1058,7 @@ class Woo_Usn_Admin_Settings
             'placeholder' => 'My Shop',
             'required'    => true,
             'default'     => esc_attr( get_option( 'woo_usn_sendchamp_from_number' ) ),
-            'description' => __( "You can retrieve it from your <a href='https://my.sendchamp.com/'>SendChamp account</a>.", 'ultimate-sms-notifications' ),
+            'description' => __( "You can retrieve it from your <a href='https://my.sendchamp.com/' target='__blank'>SendChamp account</a>.", 'ultimate-sms-notifications' ),
         ) );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
         homescript_input_fields( 'woo_usn_sendchamp_api_key', array(
@@ -1098,11 +1068,11 @@ class Woo_Usn_Admin_Settings
             'required'    => true,
             'placeholder' => 'ABCDEFGxxxxxxxxxx',
             'default'     => esc_attr( get_option( 'woo_usn_sendchamp_api_key' ) ),
-            'description' => __( "You can retrieve it from your <a href='https://my.sendchamp.com/'>SendChamp account</a>.", 'ultimate-sms-notifications' ),
+            'description' => __( "You can retrieve it from your <a href='https://my.sendchamp.com/' target='__blank'>SendChamp account</a>.", 'ultimate-sms-notifications' ),
         ) );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
-        Woo_Usn_UI_Fields::format_html_fields( "You will need a SendChamp <a href='https://my.sendchamp.com/'> API Key </a> and <a href='https://support.sendchamp.com/article/13-a-guide-on-how-to-get-your-api-keys'> Channel ID </a> in order to send SMS. " );
+        Woo_Usn_UI_Fields::format_html_fields( "You will need a SendChamp <a href='https://my.sendchamp.com/' target='__blank'> API Key </a> and <a href='https://support.sendchamp.com/article/13-a-guide-on-how-to-get-your-api-keys' target='__blank'> Channel ID </a> in order to send SMS. " );
         ?>
         </div>
 		<div id="woo_usn_api_avlytext" class="wrap" data-name="avlytext" style="display:none;">
@@ -1119,17 +1089,23 @@ class Woo_Usn_Admin_Settings
             $second_data = $woo_usn_creds['second'];
         }
         
-        homescript_input_fields( 'woo_usn_creds[first]', array(
+        homescript_input_fields(
+            'woo_usn_creds[avlytext][first]',
+            array(
             'type'        => 'text',
             'label'       => '<strong>' . __( 'AvlyText API Key : ', 'ultimate-sms-notifications' ) . '</strong>',
             'input_class' => array( 'woousn-text-customs-api' ),
             'required'    => true,
             'placeholder' => 'dMoSJgddqOQyB1tir3cnk5jm2eDNzezesbgpvZ8Knwd58ZDU1FlSTClJgaZupwr4K00',
-            'default'     => esc_attr( $first_data ),
-            'description' => __( "You can retrieve it from your <a href='https://www.avlytext.com/en/login'>AvlyText account</a>.", 'ultimate-sms-notifications' ),
-        ) );
+            'description' => __( "You can retrieve it from your <a href='https://www.avlytext.com/en/login' target='__blank'>AvlyText account</a>.", 'ultimate-sms-notifications' ),
+        ),
+            esc_attr( $first_data ),
+            true
+        );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
-        homescript_input_fields( 'woo_usn_creds[second]', array(
+        homescript_input_fields(
+            'woo_usn_creds[avlytext][second]',
+            array(
             'type'        => 'text',
             'label'       => '<strong>' . __( 'AvlyText Sender Name : ', 'ultimate-sms-notifications' ) . '</strong>',
             'input_class' => array( 'woousn-text-customs-api' ),
@@ -1137,7 +1113,129 @@ class Woo_Usn_Admin_Settings
             'required'    => true,
             'default'     => esc_attr( $second_data ),
             'description' => __( "Define the name of the sender you would like to have displayed when sending SMS.", 'ultimate-sms-notifications' ),
-        ) );
+        ),
+            esc_attr( $second_data ),
+            true
+        );
+        Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
+        ?>
+		</div>
+		<div id="woo_usn_api_octopush" class="wrap" data-name="octopush" style="display:none;">
+		<?php 
+        $api_choosed = get_option( 'woo_usn_api_choosed' );
+        Woo_Usn_UI_Fields::format_html_fields( 'Set Octopush by providing information necessary in the fields below.<br/>' );
+        Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
+        $woo_usn_creds = get_option( 'woo_usn_creds', false );
+        $first_data = "";
+        $second_data = "";
+        
+        if ( "Octopush" == $api_choosed ) {
+            $first_data = $woo_usn_creds['first'];
+            $second_data = $woo_usn_creds['second'];
+        }
+        
+        homescript_input_fields(
+            'woo_usn_creds[octopush][first]',
+            array(
+            'type'        => 'text',
+            'label'       => '<strong>' . __( 'Octopush API Key : ', 'ultimate-sms-notifications' ) . '</strong>',
+            'input_class' => array( 'woousn-text-customs-api' ),
+            'required'    => true,
+            'placeholder' => 'dMoSJgddqOQyB1tir3cnk5jm2eDNzezesbgpvZ8Knwd58ZDU1FlSTClJgaZupwr4K00',
+            'description' => __( "You can retrieve it from your <a href='https://client.octopush.com/api-credentials' target='__blank'>Octopush credentials account page</a>.", 'ultimate-sms-notifications' ),
+        ),
+            $first_data,
+            true
+        );
+        Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
+        homescript_input_fields(
+            'woo_usn_creds[octopush][second]',
+            array(
+            'type'        => 'text',
+            'label'       => '<strong>' . __( 'Octopush Login : ', 'ultimate-sms-notifications' ) . '</strong>',
+            'input_class' => array( 'woousn-text-customs-api' ),
+            'placeholder' => 'noreply@ultimatesmsnotifications.com',
+            'required'    => true,
+            'description' => __( "You can retrieve it from your <a href='https://client.octopush.com/api-credentials' target='__blank'>Octopush credentials account page</a>.", 'ultimate-sms-notifications' ),
+        ),
+            $second_data,
+            true
+        );
+        Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
+        ?>
+		</div>
+		<div id="woo_usn_api_tyntecsms" class="wrap" data-name="tyntecsms" style="display:none;">
+		<?php 
+        $api_choosed = get_option( 'woo_usn_api_choosed' );
+        Woo_Usn_UI_Fields::format_html_fields( 'Set Tyntec SMS by providing information necessary in the fields below.<br/>' );
+        Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
+        $woo_usn_creds = get_option( 'woo_usn_creds', false );
+        $first_data = "";
+        $second_data = "";
+        
+        if ( "tyntecsms" == $api_choosed ) {
+            $first_data = $woo_usn_creds['first'];
+            $second_data = $woo_usn_creds['second'];
+        }
+        
+        homescript_input_fields(
+            'woo_usn_creds[tyntecsms][first]',
+            array(
+            'type'        => 'text',
+            'label'       => '<strong>' . __( 'Tyntec SMS API Key : ', 'ultimate-sms-notifications' ) . '</strong>',
+            'input_class' => array( 'woousn-text-customs-api' ),
+            'required'    => true,
+            'placeholder' => 'UiuUezeMTX7chPtTDJPY7vNBQM4hPOOaz',
+            'description' => __( "You can retrieve it from your <a href='https://my.tyntec.com/api-settings' target='__blank'>Tyntec SMS credentials account page</a>.", 'ultimate-sms-notifications' ),
+        ),
+            esc_attr( $first_data ),
+            true
+        );
+        Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
+        homescript_input_fields(
+            'woo_usn_creds[tyntecsms][second]',
+            array(
+            'type'        => 'text',
+            'label'       => '<strong>' . __( 'Tyntec SMS Sender Name : ', 'ultimate-sms-notifications' ) . '</strong>',
+            'input_class' => array( 'woousn-text-customs-api' ),
+            'placeholder' => 'My Shop',
+            'required'    => true,
+            'description' => __( "Define the SMS Sender Name.", 'ultimate-sms-notifications' ),
+        ),
+            esc_attr( $second_data ),
+            true
+        );
+        Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
+        ?>
+		</div>
+
+		<div id="woo_usn_api_fast2sms" class="wrap" data-name="fast2sms" style="display:none;">
+		<?php 
+        $api_choosed = get_option( 'woo_usn_api_choosed' );
+        Woo_Usn_UI_Fields::format_html_fields( 'Set Fast2SMS by providing information necessary in the fields below.<br/>' );
+        Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
+        $woo_usn_creds = get_option( 'woo_usn_creds', false );
+        $first_data = "";
+        $second_data = "";
+        
+        if ( "fast2sms" == $api_choosed ) {
+            $first_data = $woo_usn_creds['first'];
+            $second_data = $woo_usn_creds['second'];
+        }
+        
+        homescript_input_fields(
+            'woo_usn_creds[fast2sms][first]',
+            array(
+            'type'        => 'text',
+            'label'       => '<strong>' . __( 'Fast2SMS API Key : ', 'ultimate-sms-notifications' ) . '</strong>',
+            'input_class' => array( 'woousn-text-customs-api' ),
+            'required'    => true,
+            'placeholder' => 'UiuUezeMTX7chPtTDJPY7vNBQM4hPOOaz',
+            'description' => __( "You can retrieve it from your <a href='https://www.fast2sms.com/dashboard/dev-api' target='__blank'>Tyntec SMS credentials account page</a>.", 'ultimate-sms-notifications' ),
+        ),
+            esc_attr( $first_data ),
+            true
+        );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
         ?>
 		</div>
@@ -1337,6 +1435,12 @@ class Woo_Usn_Admin_Settings
         <br/>
         <div class="woousn-cl-loader" style="display: none;"></div>
 		<?php 
+    }
+    
+    public static function get_un_reasons( $reasons )
+    {
+        Woo_Usn_Utility::log_errors( print_r( $reasons, true ) );
+        return $reasons;
     }
 
 }

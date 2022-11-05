@@ -162,5 +162,60 @@ class Woo_Usn_Public
         $usn_sms_loader->send_api_messages( $order_id );
         do_action( 'woo_usn_send_sms_after_an_order', $order_id, $usn_sms_loader );
     }
+    
+    /**
+     * Get customer consent.
+     */
+    public function get_customer_consent()
+    {
+        $options = get_option( 'woo_usn_options' );
+        
+        if ( isset( $options['woo_usn_sms_consent'] ) ) {
+            $content = __( 'I would receive any kind of SMS on my phone number.', 'ultimmate-sms-notifications' );
+            if ( !empty($options['woo_usn_sms_consent_text_to_display']) ) {
+                $content = $options['woo_usn_sms_consent_text_to_display'];
+            }
+            ?>
+				<p class="form-row validate-required">
+					<label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
+					<input type="checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" name="woo_usn_sms_consent" <?php 
+            checked( apply_filters( 'woo_usn_must_send_sms', isset( $_POST['woo_usn_sms_consent'] ) ), true );
+            ?> id="woo_usn_consent_sms" />
+						<span class="woocommerce-terms-and-conditions-checkbox-text"><?php 
+            Woo_Usn_UI_Fields::format_html_fields( $content );
+            ?></span>&nbsp;
+					</label>
+				</p>
+			<?php 
+        }
+    
+    }
+    
+    /**
+     * Store customer consent.
+     */
+    public function store_customer_consent( WC_Order $customer )
+    {
+        $sent_consent = filter_input( INPUT_POST, 'woo_usn_sms_consent' );
+        $consent = 'off';
+        $customer_id = $customer->get_customer_id();
+        
+        if ( 'on' === $sent_consent ) {
+            update_user_meta( $customer_id, 'woo_usn_allow_sms_sending', $sent_consent );
+            $consent = $sent_consent;
+        }
+        
+        global  $wpdb ;
+        $table_name = $wpdb->prefix . '_woousn_subscribers_list';
+        $timezone_format = _x( 'Y-m-d  H:i:s', 'timezone date format' );
+        //phpcs:disable
+        $wpdb->insert( $table_name, array(
+            'customer_id'              => $customer_id,
+            'customer_consent'         => $consent,
+            'customer_registered_page' => 'checkout',
+            'date'                     => date_i18n( $timezone_format, false, true ),
+        ) );
+        //phpcs:enable
+    }
 
 }

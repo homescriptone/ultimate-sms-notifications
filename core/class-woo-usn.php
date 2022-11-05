@@ -196,12 +196,19 @@ class Woo_Usn
             'sms_from_thank_you',
             99
         );
+        $this->loader->add_action( 'woocommerce_checkout_after_terms_and_conditions', $plugin_public, 'get_customer_consent' );
         $this->loader->add_action(
             'woocommerce_checkout_update_customer',
             'Woo_Usn_SMS',
             'send_sms_to_new_customers',
             12,
             2
+        );
+        $this->loader->add_action(
+            'woocommerce_checkout_order_created',
+            $plugin_public,
+            'store_customer_consent',
+            15
         );
     }
     

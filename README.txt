@@ -4,7 +4,7 @@ Tags: orders notifications, woocommerce whatsapp, whatsapp automations, woocomme
 Donate link: https://buymeacoffee.com/homescriptone/  
 Requires at least: 4.4  
 Tested up to: 6.1   
-Stable tag: 1.9.7      
+Stable tag: 1.9.7.1     
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt    
 
@@ -139,6 +139,10 @@ You can read this tutorial explaining how to do it <a href="https://ultimatesmsn
 == Screenshots ==
 
 == Changelog ==
+<h4>1.9.7.1 - 7 November 2022</h4>
+<ul>
+<li>Fix fatal errors when activating plugin</li>
+</ul>
 <h4>1.9.7 - 7 November 2022</h4>
 <ul>
 <li>Fix fatal errors when activating plugin</li>

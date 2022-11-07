@@ -1439,7 +1439,7 @@ class Woo_Usn_Admin_Settings
     
     public static function get_un_reasons( $reasons )
     {
-        Woo_Usn_Utility::log_errors( print_r( $reasons, true ) );
+        //Woo_Usn_Utility::log_errors( print_r( $reasons, true ));
         return $reasons;
     }
 

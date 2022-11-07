@@ -7,7 +7,7 @@ class Woo_Usn_Activator
      */
     public static function activate()
     {
-	global $wpdb;
+	      global $wpdb;
         global $woo_usn_db_subscribers_version;
 		$subscribers_installed_ver = get_option( 'woo_usn_subscribers_db_version' );
 		if ( $subscribers_installed_ver != $woo_usn_db_subscribers_version ) {

@@ -4,7 +4,7 @@
  * Plugin Name:       Ultimate SMS & WhatsApp Notifications for WooCommerce
  * Plugin URI:        https://ultimatesmsnotifications.com?utm_source=customer_websites&utm_medium=plugin_page
  * Description:       Run endless SMS & WhatsApp Notifications using WooCommerce.
- * Version:           1.9.7
+ * Version:           1.9.7.1
  * Author:            HomeScript
  * Author URI:        https://ultimatesmsnotifications.com?utm_source=customer_websites&utm_medium=plugin_page
  * License:           GPL-2.0+

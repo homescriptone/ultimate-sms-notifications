@@ -1426,11 +1426,11 @@ class Woo_Usn_Utility {
 
 	public static function get_sms_status( $status_code, $sms_gateway ) {
 		if ( $status_code == 'queued' || true == preg_match( '/^2([0-9]{1})([0-9]{1})$/', $status_code ) || 'ok' === $status_code ) {
-			$message = __( 'SMS successfully sent', 'ultimate-sms-notifications' );
+			$message = __( 'Message successfully sent', 'ultimate-sms-notifications' );
 		} else {
-			$message = __( 'SMS failed to sent', 'ultimate-sms-notifications' );
+			$message = __( 'Message failed to sent', 'ultimate-sms-notifications' );
 			self::log_errors( $status_code );
-			self::log_errors( __( 'The SMS Gateway used is : ', 'ultimate-sms-notifications' ) . $sms_gateway );
+			self::log_errors( __( 'The Gateway used is : ', 'ultimate-sms-notifications' ) . $sms_gateway );
 		}
 
 		return apply_filters( 'woo_usn_get_sms_status_code', $message, $status_code, $sms_gateway );
@@ -1445,6 +1445,16 @@ class Woo_Usn_Utility {
 		}
 
 		return __( 'SMS failed to send , please again later ! .', 'ultimate-sms-notifications' );
+	}
+
+
+	public static function get_country_name_from_code( $country_code ) {
+		$country = self::get_worldwide_country_code();
+		foreach ( $country as $country_name => $indicator ) {
+			if ( $country_code == $indicator['code'] ) {
+				return $indicator['name'];
+			}
+		}
 	}
 }
 

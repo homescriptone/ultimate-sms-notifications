@@ -124,19 +124,13 @@ class Woo_Usn_Public
                 $this->version,
                 false
             );
-            
-            if ( class_exists( 'WC_Geolocation' ) ) {
-                $location = WC_Geolocation::geolocate_ip();
-                $country = $location['country'];
-                if ( '' === $country ) {
-                    $country = 'IN';
-                }
-            }
-            
+            $options = get_option( 'woo_usn_options' );
             $enqueue_list[] = $this->plugin_name . '-phone-validator';
             $localize_object['woo_usn_phone_utils_path'] = plugin_dir_url( __FILE__ ) . 'js/jquery-phone-validator-utils.js';
             $localize_object['wrong_phone_number_messages'] = __( 'The phone number provided isn\'t valid, please correct it.', 'ultimate-sms-notifications' );
-            $localize_object['user_country_code'] = $country;
+            $localize_object['user_country_code'] = strtolower( $options['default_country_selector'] ?? 'IN' );
+            $wc_countries = new WC_Countries();
+            $localize_object['wc_allowed_countries'] = array_keys( $wc_countries->get_allowed_countries() );
             wp_enqueue_script(
                 $this->plugin_name,
                 plugin_dir_url( __FILE__ ) . 'js/woo-usn-public.js',
@@ -216,6 +210,26 @@ class Woo_Usn_Public
             'date'                     => date_i18n( $timezone_format, false, true ),
         ) );
         //phpcs:enable
+    }
+    
+    public function validate_pn()
+    {
+        $pn_is_valid = filter_input( INPUT_POST, 'woo_usn_pn_is_valid' );
+        
+        if ( $pn_is_valid == "no" ) {
+            $title = "<strong>" . __( 'Billing Phone', 'woocommerce' ) . '</strong>';
+            $message = $title . " " . __( 'is not valid, please correct it.', 'ultimate-sms-notifications' );
+            wc_add_notice( $message, 'error' );
+            return;
+        }
+    
+    }
+    
+    public function get_validation_block_html()
+    {
+        ?>
+        <input type="hidden" id="woousn_pn_valid" name="woo_usn_pn_is_valid" value="no"/>
+	    <?php 
     }
 
 }

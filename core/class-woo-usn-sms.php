@@ -42,7 +42,7 @@ class Woo_Usn_SMS
             'Authorization' => 'Basic ' . base64_encode( $id . ':' . $token ),
         );
         
-        if ( 'Twilio' === $this->sms_api->api_used || 'twilio_whatsapp' === $this->sms_api->api_used ) {
+        if ( 'Twilio' === $this->sms_api->api_used ) {
             $url = "https://api.twilio.com/2010-04-01/Accounts/{$id}/Messages.json";
             $data = array(
                 'From' => $from,
@@ -97,7 +97,7 @@ class Woo_Usn_SMS
                 'text'       => $body,
                 'sender'     => apply_filters( 'woo_usn_octopush_sender_name', get_bloginfo( 'name' ) ),
                 'recipients' => array( array(
-                "phone_number" => "+" . $to,
+                'phone_number' => '+' . $to,
             ) ),
             ) );
         } elseif ( 'tyntecsms' === $this->sms_api->api_used ) {
@@ -122,7 +122,7 @@ class Woo_Usn_SMS
                 'route'   => 'q',
                 'numbers' => $to,
             ) );
-            $url = "https://www.fast2sms.com/dev/bulkV2";
+            $url = 'https://www.fast2sms.com/dev/bulkV2';
         }
         
         $result = wp_remote_post( $url, array(
@@ -176,6 +176,16 @@ class Woo_Usn_SMS
         
         
         if ( 'Twilio' === $this->sms_api->api_used ) {
+            
+            if ( function_exists( 'wc_get_logger' ) ) {
+                $wc_log = wc_get_logger();
+                $wc_log->error( 'Twilio error code : ' . print_r( $decoded, true ), array(
+                    'source' => 'ultimate-sms-notifications',
+                ) );
+            } else {
+                Woo_Usn_Utility::write_log( 'Twilio error code :' . print_r( $decoded, true ) );
+            }
+            
             return $decoded->status;
         } elseif ( 'Message Bird' === $this->sms_api->api_used ) {
             
@@ -284,16 +294,6 @@ class Woo_Usn_SMS
         $phone_number = str_ireplace( ' ', '', $phone_number );
         $skip_sms = false;
         $sms_api = $this->sms_api->api_used;
-        $woo_usn_options = get_option( 'woo_usn_options' );
-        
-        if ( isset( $woo_usn_options['woo_usn_sms_consent'] ) ) {
-            $user_id = get_current_user_id();
-            $user_allowed_sms = get_user_meta( $user_id, 'woo_usn_allow_sms_sending', true );
-            if ( 'on' !== $user_allowed_sms ) {
-                return;
-            }
-        }
-        
         if ( apply_filters( 'woo_usn_send_only_sms', !$skip_sms ) ) {
             
             if ( 'Twilio' === $sms_api ) {

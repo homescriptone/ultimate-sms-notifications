@@ -34,7 +34,7 @@
       //console.info(e);
     }
 
-    $('span.woo-usn-qs-class.woo-usn-use-phone-number' ).show();
+    $('div.woo-usn-qs-class.woo-usn-use-phone-number' ).show();
 
 
     // show/hide based on the API
@@ -349,6 +349,10 @@
         'input[name="woo_usn_options[woo_usn_messages_after_customer_signup]"]',
         "tr.woo-usn-signup-defaults-messages"
       );
+      hs_toggle_display(
+        'input[name="woo_usn_options[woo_usn_failed_emails_notifications]"]',
+        "tr.woo-usn-admin-failed-emails"
+      );
     };
 
 
@@ -365,8 +369,8 @@
    
     $('input[name="woo_usn_qs_pn"]').on('change', function(){
       var recipient_selection_mode = $(this).val();
-      $('span.woo-usn-qs-class').hide();
-      $('span.woo-usn-qs-class.woo-usn-'+recipient_selection_mode ).show();
+      $('div.woo-usn-qs-class').hide();
+      $('div.woo-usn-qs-class.woo-usn-'+recipient_selection_mode ).show();
     });
     
     // whatsapp.
@@ -409,6 +413,8 @@
       );
 
     });
+
+    $("select[name='woo_usn_options[default_country_selector]']").select2();
 
     $("input#woo_usn_wha_creds_deleting").on("click submit", function (e) {
       e.preventDefault();

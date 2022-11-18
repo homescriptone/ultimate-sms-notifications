@@ -153,6 +153,10 @@ You can read this tutorial explaining how to do it <a href="https://ultimatesmsn
 == Screenshots ==
 
 == Changelog ==
+<h4>1.9.8.1 - 19 November 2022</h4>
+<ul>
+<li>Fix fatal errors.</li>
+</ul>
 <h4>1.9.8 - 19 November 2022</h4>
 <ul>
 <li>Fix style issues with theme Konte</li>

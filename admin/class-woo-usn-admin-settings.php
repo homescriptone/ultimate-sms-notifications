@@ -443,8 +443,60 @@ class Woo_Usn_Admin_Settings
                 '',
             )
         );
+        add_settings_field(
+            'woo_usn_sms_default_country',
+            // ID used to identify the field throughout the theme.
+            __( 'Default Country to use on the Phone Number country selector : ', 'ultimate-sms-notifications' ),
+            __CLASS__ . '::choose_default_country_selector',
+            // The name of the function responsible for rendering the option interface.
+            'woo_usn_options',
+            // The page on which this option will be displayed.
+            'woo_usn_options_page',
+            // The name of the section to which this field belongs.
+            array(
+                // The array of arguments to pass to the callback. In this case, just a description.
+                '',
+            )
+        );
+        add_settings_field(
+            'woo_usn_failed_emails_notifications',
+            // ID used to identify the field throughout the theme.
+            __( 'Send Notifications to shop owner/manager if emails sending failed : ', 'ultimate-sms-notifications' ),
+            __CLASS__ . '::send_failed_email_notification',
+            // The name of the function responsible for rendering the option interface.
+            'woo_usn_options',
+            // The page on which this option will be displayed.
+            'woo_usn_options_page',
+            // The name of the section to which this field belongs.
+            array(
+                // The array of arguments to pass to the callback. In this case, just a description.
+                '',
+            )
+        );
         do_action( 'woo_usn_options_settings_field' );
         register_setting( 'woo_usn_options', 'woo_usn_options' );
+    }
+    
+    public static function send_failed_email_notification()
+    {
+        $options = get_option( 'woo_usn_options' );
+        $checked = 0;
+        if ( !empty($options['woo_usn_failed_emails_notifications']) ) {
+            $checked = 1;
+        }
+        Woo_Usn_UI_Fields::format_html_fields( __( 'The shop owner/manager will receive an automated SMS once a email failed to send. ( Pro Feature )', 'ultimate-sms-notifications' ) );
+        echo  "<br/>" ;
+        Woo_Usn_UI_Fields::format_html_fields( wp_sprintf( "<a href='%s'>%s</a>", admin_url( "admin.php?page=ultimate-sms-notifications-pricing" ), __( 'Click here to upgrade', 'ultimate-sms-notifications' ) ) );
+    }
+    
+    public static function choose_default_country_selector()
+    {
+        $options = get_option( 'woo_usn_options' );
+        $countries = new WC_Countries();
+        homescript_input_fields( 'woo_usn_options[default_country_selector]', array(
+            'type'    => 'select',
+            'options' => $countries->get_countries(),
+        ), $options['default_country_selector'] ?? "IN" );
     }
     
     public static function messages_to_vendor()
@@ -1291,7 +1343,7 @@ class Woo_Usn_Admin_Settings
 					<br/>
 					<br/>
 		    
-			<span class="woo-usn-use-phone-number woo-usn-use-contact-list-premium woo-usn-qs-class" style='display:none;'>
+			<div class="woo-usn-use-phone-number woo-usn-use-contact-list-premium woo-usn-qs-class" >
 			<?php 
         homescript_input_fields( 'woo_usn_testing_numbers', array(
             'required'    => true,
@@ -1299,11 +1351,11 @@ class Woo_Usn_Admin_Settings
             'input_class' => array( 'woo-usn-testing-numbers', 'woousn-text-customs' ),
         ) );
         ?>
-				</span>
-				<span class="woo-usn-use-contact-list  woo-usn-qs-class" style='display:none;'>
+				</div>
+				<div class="woo-usn-use-contact-list  woo-usn-qs-class" style='display:none;'>
 					<?php 
         ?>
-				</span>
+				</div>
 				<br/>
 				<br/>
 			<?php 

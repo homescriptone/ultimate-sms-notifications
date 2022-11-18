@@ -18,6 +18,12 @@
         return html;
     };
 
+
+    var hs_generate_consent_select_operators = function() {
+        var html = "<select name='customer-consent'><option class='woo-usn-operators' value='accepted'>ACCEPTED</option></select>"
+        return html;
+    }
+
     var hs_hide_show_fields = function ( cl_type_mode ){
         var usn_add_btn = $('input#woousn_add_custom_filters');
         if ( cl_type_mode == "dynamic" ){
@@ -143,6 +149,33 @@
                 woo_usn_field_values.empty().attr('name', 'customer-email').append('<input type="text" name="woo-usn[' + hash_code + '][cl-values]"  required/>');
                 break;
 
+            case '_completed_date':
+            case '_paid_date':
+                woo_usn_field_options.empty().append(hs_generate_html_operators());
+                var date_field = woo_usn_field_values.empty().attr('name', 'customer-date').append('<input type="text" name="woo-usn[' + hash_code + '][cl-values]"  required/>');
+                var ch_field   = date_field.children('input'); 
+
+                if ( ch_field ) {
+                    $(ch_field).datepicker({
+                        changeMonth: true,
+                        changeYear: true,
+                        defaultDate: '',
+                        dateFormat: 'yy-mm-dd',
+                        numberOfMonths: 1,
+                        minDate: '-20Y',
+                        maxDate: '+1D',
+                        showButtonPanel: true,
+                        showOn: 'focus',
+                        buttonImageOnly: true
+                    });
+                }
+                break;
+
+            case '_customer_mobile_marketing':
+                woo_usn_field_options.empty().append(hs_generate_html_operators());
+                woo_usn_field_values.empty().attr('name', 'customer-consent').append(hs_generate_consent_select_operators())
+                break;
+
             default:
                 break;
         }
@@ -188,7 +221,7 @@
         $('div.woousn-cl-loader').show();
         $('div.woousn-search-list').empty().hide();
         $.post(woo_usn_ajax_object.woo_usn_ajax_url, {
-            action: 'get-customers-list',
+            action: 'woo-usn-get-customers-list',
             data: woo_usn_cl_list,
             'security': woo_usn_ajax_object.woo_usn_ajax_security
         }, function (response) {

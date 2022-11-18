@@ -4,7 +4,7 @@ Tags: orders notifications, woocommerce whatsapp, whatsapp automations, woocomme
 Donate link: https://buymeacoffee.com/homescriptone/  
 Requires at least: 4.4  
 Tested up to: 6.1   
-Stable tag: 1.9.7.2     
+Stable tag: 1.9.8     
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt    
 
@@ -30,6 +30,7 @@ Send WooCommerce Orders Notifications and more by using SMS & WhatsApp.
     <li>Ultramsg ( Whatsapp API )</li>
     <li>FastWaSMS ( Whatsapp API )</li>
     <li>GreenAPI ( Whatsapp API )</li>
+    <li>Twilio WhatsApp ( Whatsapp API )</li>
 </ul>
 
 <p> <strong>Improve customer relationship </strong> </p>
@@ -49,13 +50,26 @@ Send WooCommerce Orders Notifications and more by using SMS & WhatsApp.
 <h4>Features</h4>
 <ul>
 <li><strong>Order Notifications : </strong> Send SMS & WhatsApp Orders Notifications to your customers easily. </li>
+<li><strong>Bulk SMS : </strong> Send Bulk SMS to customers who already bought on your store easily. </li>
 <li><strong>Flash Notifications : </strong> Send Flash SMS or WhatsApp Notifications to people who care for you. </li>
 <li><strong>Groups Notifications : </strong> Build contacts list, use it to share good news, love through SMS or WhatsApp Notifications. </li>
 <li><strong>Shipping Notifications : </strong> Share shipping tracking with your customer by SMS and WhatsApp. </li>
 <li><strong>Account Notifications : </strong> Welcome new user registering on your website by SMS or WhatsApp Notifications </li>
+<li><strong>Cross-Mobile Notifications : </strong> Send SMS and WhatsApp Notifications simultanly </li>
+<li><strong>Failed Emails Mobile Notifications : </strong> Get notified by SMS or WhatsApp notifications if emails failed to send on your store.  </li>
+<li><strong>Phone Number Country Restriction : </strong> Prevent customers from countries where you're not selling to place a order.  </li>
+<li><strong>Phone Number Country Validator : </strong> Assure that customers phone number is valid before checkout.  </li>
+<li><strong>Vendors Notifications : </strong> Notify your store vendors if products are bought from their stores ( Works with Dokan and WCFM ). </li>
+<li><strong>Dynamic Contact List: </strong> Use the data available in WooCommerce to build dynamic contact list, who make it easier to send Bulk SMS, Bulk WhatsApp Notifications and Mobile campaign to a specific segment of your customers. </li>
+<li><strong>Rest API Notifications : </strong> Give the ability to your partners to send SMS & WhatsApp Notifications by using your website Rest API.  </li>
+<li><strong>GDPR Consent : </strong> Get customers consent before sending them mobile notifications by SMS or WhatsApp. </li>
 <li><strong><a href="https://ultimatesmsnotifications.com/features-2/" target="_blank">and more</a></strong> </li>
 
 </ul>
+
+<h4>Theme Compatibility</h4>
+<p>The plugin works with all types of WooCommerce themes. If you are encountering some style issues with your theme, feel free to contact us <a href="https://ultimatesmsnotifications.com/?utm_source=wordpressdotorg">here</a></p>
+
 
 <h4>Additionnal Features</h4>
 <p>If you have some features, you think it's worth adding them, feel free to contact us <a href="https://ultimatesmsnotifications.com/?utm_source=wordpressdotorg">here</a></p>
@@ -64,7 +78,7 @@ Send WooCommerce Orders Notifications and more by using SMS & WhatsApp.
 <p>Find here, how to configure Ultimate SMS & WhatsApp Notifications for WooCommerce :   <a href="https://docs.ultimatesmsnotifications.com?utm_source=wordpressdotorg" rel="follow">Documentation</a></p>
 
 <h4>Feedback</h4>
-<p>If you have a feedback, feel free to share it via this  <a href="https://feedback.homescriptone.com/requests?utm_source=wordpressdotorg&utm_medium=feature_requests">page</a> </p>
+<p>If you have a feedback, feel free to share it via this  <a href="https://ultimatesmsnotifications.com/groups?utm_source=wordpressdotorg&utm_medium=feature_requests">page</a> </p>
 
 <h4>Translation</h4>
 The plugin is translation-ready.
@@ -127,7 +141,7 @@ Manual installation method requires downloading the Ultimate SMS & WhatsApp Noti
     <li>UltraMsg</li>
     <li>FastWaSMS</li>
     <li>Facebook Cloud API ( Beta )</li>
-    <li>Twilio WhatsApp ( Beta )</li>
+    <li>Twilio WhatsApp</li>
 </ul>  
 
 =Where can I get support or contribute to the project ?=  
@@ -139,7 +153,18 @@ You can read this tutorial explaining how to do it <a href="https://ultimatesmsn
 == Screenshots ==
 
 == Changelog ==
-<h4>1.9.7, 1.9.7.1, 1.9.7.2 - 7 November 2022</h4>
+<h4>1.9.8 - 19 November 2022</h4>
+<ul>
+<li>Fix style issues with theme Konte</li>
+<li>Add JS fields verification on checkout page</li>
+<li>Fix fatal errors when creating contact list on store with millions of orders</li>
+<li>Fix customer full name not displaying into subscribers list</li>
+<li>Release TWilio WhatsApp Integration</li>
+<li>Enable the ability to send SMS and WhatsApp simultanly.</li>
+<li>Add Rest API Notifications.</li>
+<li>Restrict dynamically countries displayed into the billing phone selector.</li>
+</ul>
+<h4>1.9.7 to 1.9.7.2 - 7 November 2022</h4>
 <ul>
 <li>Fix fatal errors when activating plugin</li>
 </ul>

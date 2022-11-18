@@ -72,6 +72,7 @@ class Woo_Usn_Admin
                 'all'
             );
             wp_enqueue_editor();
+            wp_enqueue_style( 'jquery-ui-style' );
         }
     
     }
@@ -110,7 +111,12 @@ class Woo_Usn_Admin
             wp_enqueue_script(
                 $this->plugin_name . '-cl',
                 plugin_dir_url( __FILE__ ) . 'js/woo-usn-admin-cl.js',
-                array( 'jquery', $this->plugin_name . '-blockUI' ),
+                array(
+                'jquery',
+                $this->plugin_name . '-blockUI',
+                'jquery-ui-core',
+                'jquery-ui-datepicker'
+            ),
                 $this->version,
                 false
             );

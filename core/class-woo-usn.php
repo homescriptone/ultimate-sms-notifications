@@ -210,6 +210,13 @@ class Woo_Usn
             'store_customer_consent',
             15
         );
+        $this->loader->add_action(
+            'woocommerce_before_checkout_process',
+            $plugin_public,
+            'validate_pn',
+            15
+        );
+        $this->loader->add_action( 'woocommerce_checkout_billing', $plugin_public, 'get_validation_block_html' );
     }
     
     /**

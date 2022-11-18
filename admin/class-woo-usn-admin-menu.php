@@ -53,7 +53,7 @@ class Woo_Usn_Admin_Menu
         add_action( "load-{$subhook}", array( $sub_log_loader, 'screen_option' ) );
         $submenu['ultimate-sms-notifications'][20] = array( '<div class="woo-usn-links">' . __( 'Documentations', 'ultimate-sms-notifications' ) . '</div>', 'manage_options', 'https://docs.ultimatesmsnotifications.com/?utm_source=' . get_site_url() );
         $submenu['ultimate-sms-notifications'][22] = array( '<div class="woo-usn-links">' . __( 'Knowledge Base', 'ultimate-sms-notifications' ) . '</div>', 'manage_options', 'https://help.ultimatesmsnotifications.com/?utm_source=' . get_site_url() );
-        $submenu['ultimate-sms-notifications'][23] = array( '<div class="woo-usn-links">' . __( 'Contact us', 'ultimate-sms-notifications' ) . '</div>', 'manage_options', 'https://ultimatesmsnotifications.com?utm_source=' . get_site_url() );
+        $submenu['ultimate-sms-notifications'][23] = array( '<div class="woo-usn-links">' . __( 'Contact us', 'ultimate-sms-notifications' ) . '</div>', 'manage_options', 'https://chatting.page/homescriptone?utm_source=' . get_site_url() );
         $first_menu = $submenu['ultimate-sms-notifications'][0];
         $new_menu = array( '<div>' . __( 'Logs', 'ultimate-sms-notifications' ) . '</div>', 'manage_options', admin_url( "admin.php?page=ultimate-sms-notifications-pricing" ) );
         $bm = array( $first_menu, $new_menu );

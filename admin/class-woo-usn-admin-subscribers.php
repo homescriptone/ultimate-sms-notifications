@@ -52,6 +52,15 @@ class Woo_Usn_Subscribers extends WP_List_Table {
 		return $wpdb->get_results( $sql, 'ARRAY_A' );
 	}
 
+	public static function get_customer_choices( $choice='on' ) {
+
+		global $wpdb;
+
+		$sql = "SELECT customer_id FROM {$wpdb->prefix}_woousn_subscribers_list where customer_consent='$choice'";
+
+		return $wpdb->get_results( $sql, 'ARRAY_A' );
+	}
+
 
 	/**
 	 * Delete a customer record.
@@ -102,7 +111,7 @@ class Woo_Usn_Subscribers extends WP_List_Table {
             case 'customer_id':
                 $customer_id = $item['customer_id'];
                 $customer = new WC_Customer( $customer_id );
-                $fname = $customer->get_display_name();
+                $fname = $customer->get_billing_first_name() . " " .  $customer->get_billing_last_name();
                 echo wp_kses_post( '<a href="'.admin_url( 'user-edit.php?user_id='.$customer_id ) . '">'. $fname . '</a>' );
                 break;
 

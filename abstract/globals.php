@@ -17,7 +17,7 @@ class Woo_Usn_Globals {
 		global $woo_usn_db_version;
 		$woo_usn_db_version    = '1.1';
 		global $woo_usn_db_subscribers_version;
-		$woo_usn_db_subscribers_version = '1.0';
+		$woo_usn_db_subscribers_version = '1.1';
 		Woo_Usn_Activator::activate();
 	}
 

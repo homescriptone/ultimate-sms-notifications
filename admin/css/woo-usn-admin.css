@@ -433,3 +433,16 @@ div.woo-usn-radio{
 div.woo_usn_wha_api{
   display: none;
 }
+
+div.woo-usn-use-contact-list.woo-usn-qs-class .select2.select2-container.select2-container--default {
+  width: 500px !important;
+  margin-left: 40px;
+}
+
+.iti.iti--allow-dropdown {
+  margin-left: 28px !important;
+}
+
+#woo_usn_testing_messages {
+  margin-left: 53px !important;
+}

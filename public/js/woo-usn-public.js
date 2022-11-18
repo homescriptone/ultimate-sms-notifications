@@ -9,12 +9,15 @@
 	function woo_usn_init_pn_validator( country_code ) {
 		var iti;
 		var woousn_phone_number_validator = document.querySelector( "#billing_phone" );
+		var wc_allowed_countries	      = woo_usn_ajax_object.wc_allowed_countries;
+		
 		try {
 			iti = window.intlTelInput(
 				woousn_phone_number_validator,
 				{
 					initialCountry: country_code,
-					utilsScript : woo_usn_ajax_object.woo_usn_phone_utils_path
+					utilsScript : woo_usn_ajax_object.woo_usn_phone_utils_path,
+					onlyCountries: wc_allowed_countries
 				}
 			);
 
@@ -29,11 +32,16 @@
 
 	function woo_usn_check_pn_validity( iti ){
 		var isValid  = iti.isValidNumber();
-		var selector = $( 'input.woo-usn-pn-is-valid' );
+		var selector = $( 'input#woousn_pn_valid' );
 		if ( ! isValid ) {
-			selector.val( 'no' );
+			$('p#billing_phone_field').removeClass('woocommerce-validated')
+			$('p#billing_phone_field').addClass('woocommerce-invalid-phone')
+			$('p#billing_phone_field').addClass('woocommerce-invalid')
+			selector.val('no')
 		} else {
-			selector.val( 'yes' );
+			$('p#billing_phone_field').removeClass('woocommerce-invalid-phone')
+			$('p#billing_phone_field').addClass('woocommerce-validated')
+			selector.val('yes')
 		}
 	}
 	$( document ).ready(
@@ -45,6 +53,7 @@
 					country_code = woo_usn_ajax_object.user_country_code;
 				}
 				var iti_pn;
+				
 				$( document.body ).on(
 					'change',
 					'#billing_country',
@@ -60,10 +69,13 @@
 						woo_usn_check_pn_validity( iti_pn );
 					}
 				);
-
 				iti_pn = woo_usn_init_pn_validator( country_code );
-				$( "#billing_country" ).trigger( 'change' );
-				$( "#billing_phone" ).trigger( 'change' );
+
+				$(document).on('click dbclick', function(){
+					$( "#billing_country" ).trigger( 'change' );
+					$( "#billing_phone" ).trigger( 'change' );
+				});
+				
 			}
 		}
 	);

@@ -1,10 +1,10 @@
-=== Ultimate SMS & WhatsApp Notifications for WooCommerce ===  
+=== Ultimate SMS Notifications for WooCommerce ===  
 Contributors: homescript  , freemius  
 Tags: orders notifications, woocommerce whatsapp, whatsapp automations, woocommerce whatsapp marketing, woocommerce orders notifications, mobile notifications gdpr compliant, mobile notifications woocommerce, woocommerce, telesign, woocommerce india
 Donate link: https://buymeacoffee.com/homescriptone/  
 Requires at least: 4.4  
 Tested up to: 6.1   
-Stable tag: 1.9.8     
+Stable tag: 1.9.8.2     
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt    
 
@@ -140,7 +140,6 @@ Manual installation method requires downloading the Ultimate SMS & WhatsApp Noti
     <li>GreenApi</li>
     <li>UltraMsg</li>
     <li>FastWaSMS</li>
-    <li>Facebook Cloud API ( Beta )</li>
     <li>Twilio WhatsApp</li>
 </ul>  
 
@@ -153,6 +152,10 @@ You can read this tutorial explaining how to do it <a href="https://ultimatesmsn
 == Screenshots ==
 
 == Changelog ==
+<h4>1.9.8.2 - 19 November 2022</h4>
+<ul>
+<li>Comply with WordPress.org guidelines.</li>
+</ul>
 <h4>1.9.8.1 - 19 November 2022</h4>
 <ul>
 <li>Fix fatal errors.</li>

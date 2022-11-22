@@ -152,8 +152,6 @@ You can read this tutorial explaining how to do it <a href="https://ultimatesmsn
 == Screenshots ==
 
 == Changelog ==
-<<<<<<< Updated upstream
-=======
 <h4>1.9.8.2 - 19 November 2022</h4>
 <ul>
 <li>Comply with WordPress.org guidelines.</li>
@@ -162,7 +160,6 @@ You can read this tutorial explaining how to do it <a href="https://ultimatesmsn
 <ul>
 <li>Fix fatal errors.</li>
 </ul>
->>>>>>> Stashed changes
 <h4>1.9.8 - 19 November 2022</h4>
 <ul>
 <li>Fix style issues with theme Konte</li>

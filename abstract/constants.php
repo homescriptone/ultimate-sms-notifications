@@ -2,7 +2,11 @@
 /**
  * All the constants related to the plugin are defined here.
  */
+<<<<<<< Updated upstream
 define( 'WOO_USN_VERSION', '1.9.8' );
+=======
+define( 'WOO_USN_VERSION', '1.9.8.2' );
+>>>>>>> Stashed changes
 define( 'WOO_USN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WOO_USN_URL', plugins_url( '/', __FILE__ ) );
 define( 'WOO_USN_PLUGIN_ID', '6855' );

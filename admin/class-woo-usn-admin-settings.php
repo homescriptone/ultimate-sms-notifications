@@ -432,7 +432,7 @@ class Woo_Usn_Admin_Settings
             'woo_usn_sms_consent',
             // ID used to identify the field throughout the theme.
             __( 'Get customer approbation before sending him SMS : ', 'ultimate-sms-notifications' ),
-            __CLASS__ . '::display_consent_sms__premium_only',
+            __CLASS__ . '::display_consent_sms',
             // The name of the function responsible for rendering the option interface.
             'woo_usn_options',
             // The page on which this option will be displayed.
@@ -510,6 +510,14 @@ class Woo_Usn_Admin_Settings
         echo  "<br/>" ;
         Woo_Usn_UI_Fields::format_html_fields( wp_sprintf( "<a href='%s'>%s</a>", admin_url( "admin.php?page=ultimate-sms-notifications-pricing" ), __( 'Click here to upgrade', 'ultimate-sms-notifications' ) ) );
     }
+
+    public static function display_consent_sms() {
+		$message  =  __('By enabling, customers can decide if they want to receive mobile notifications.', 'ultimate-sms-notifications' );
+		$message .= "<br/>" .  wp_sprintf("<a href='%s'>%s</a>", admin_url("admin.php?page=ultimate-sms-notifications-pricing"), __('Click here to upgrade', 'ultimate-sms-notifications' ) );
+
+		Woo_Usn_UI_Fields::format_html_fields( $message );
+		
+	}
     
     /**
      * Display admin template messages fields.

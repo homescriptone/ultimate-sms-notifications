@@ -1,6 +1,5 @@
 <?php
 
-// phpcs:ignorefile
 /**
  * This class is responsible to display the settings page for the plugin.
  */
@@ -30,50 +29,51 @@ class Woo_Usn_Admin_Settings
             'title' => __( 'SMS Gateways', 'ultimate-sms-notifications' ),
         ),
             'whatsapp-api' => array(
-            'url'   => admin_url( "admin.php?page=ultimate-sms-notifications-pricing" ),
+            'url'   => admin_url( 'admin.php?page=ultimate-sms-notifications-pricing' ),
             'title' => __( 'WhatsApp Gateways', 'ultimate-sms-notifications' ),
         ),
         ) );
         ?>
-        <div class="wrap">
-            <h1> <?php 
+		<div class="wrap">
+			<h1> <?php 
         __( 'Ultimate SMS Notifications for WooCommerce', 'ultimate-sms-notifications' );
         ?></h1>
 			<?php 
         settings_errors();
         ?>
 
-            <h2 class="woousn nav-tab-wrapper">
+			<h2 class="woousn nav-tab-wrapper">
 				<?php 
         foreach ( $settings_names as $keyname => $keyvalues ) {
+            $class_name = ( $active_tab === $keyname ? 'woousn-tab-active nav-tab-active' : '' );
             ?>
-                    <a href="<?php 
+					<a href="<?php 
             echo  wp_kses_post( $keyvalues['url'] ) ;
             ?>"
-                       class="woousn-tab nav-tab <?php 
-            echo  ( $active_tab === $keyname ? 'woousn-tab-active nav-tab-active' : '' ) ;
-            ?>"><?php 
+					   class="woousn-tab nav-tab <?php 
+            echo  esc_attr( $class_name ) ;
+            ?>"> <?php 
             echo  wp_kses_post( $keyvalues['title'] ) ;
             ?></a>
 					<?php 
         }
         ?>
-            </h2>
+			</h2>
 
 
-            <form method="post" action="options.php">
+			<form method="post" action="options.php">
 				<?php 
         
         if ( 'options' === $active_tab ) {
             ?>
-                    <div class="woousn-options-tab">
+					<div class="woousn-options-tab">
 						<?php 
             settings_fields( 'woo_usn_options' );
             do_settings_sections( 'woo_usn_options' );
             do_action( 'woo_usn_options' );
             submit_button();
             ?>
-                    </div>
+					</div>
 					<?php 
         } elseif ( 'sms-api' === $active_tab ) {
             self::display_settings_fields();
@@ -83,8 +83,8 @@ class Woo_Usn_Admin_Settings
         do_action( 'woo_usn_add_settings_tabs', $active_tab );
         ?>
 
-            </form>
-        </div>
+			</form>
+		</div>
 		<?php 
     }
     
@@ -485,8 +485,8 @@ class Woo_Usn_Admin_Settings
             $checked = 1;
         }
         Woo_Usn_UI_Fields::format_html_fields( __( 'The shop owner/manager will receive an automated SMS once a email failed to send. ( Pro Feature )', 'ultimate-sms-notifications' ) );
-        echo  "<br/>" ;
-        Woo_Usn_UI_Fields::format_html_fields( wp_sprintf( "<a href='%s'>%s</a>", admin_url( "admin.php?page=ultimate-sms-notifications-pricing" ), __( 'Click here to upgrade', 'ultimate-sms-notifications' ) ) );
+        echo  '<br/>' ;
+        Woo_Usn_UI_Fields::format_html_fields( wp_sprintf( "<a href='%s'>%s</a>", admin_url( 'admin.php?page=ultimate-sms-notifications-pricing' ), __( 'Click here to upgrade', 'ultimate-sms-notifications' ) ) );
     }
     
     public static function choose_default_country_selector()
@@ -496,9 +496,24 @@ class Woo_Usn_Admin_Settings
         homescript_input_fields( 'woo_usn_options[default_country_selector]', array(
             'type'    => 'select',
             'options' => $countries->get_countries(),
-        ), $options['default_country_selector'] ?? "IN" );
+        ), $options['default_country_selector'] ?? 'IN' );
     }
     
+    public static function display_consent_sms()
+    {
+        $options = get_option( 'woo_usn_options' );
+        $checked = 1;
+        if ( !isset( $options['woo_usn_sms_consent'] ) ) {
+            $checked = 0;
+        }
+        $message = __( 'By enabling, customers can decide if they want to receive mobile notifications.', 'ultimate-sms-notifications' );
+        $message .= '<br/>' . wp_sprintf( "<a href='%s'>%s</a>", admin_url( 'admin.php?page=ultimate-sms-notifications-pricing' ), __( 'Click here to upgrade', 'ultimate-sms-notifications' ) );
+        Woo_Usn_UI_Fields::format_html_fields( $message );
+    }
+    
+    /**
+     * Message to vendor.
+     */
     public static function messages_to_vendor()
     {
         $options = get_option( 'woo_usn_options' );
@@ -507,17 +522,9 @@ class Woo_Usn_Admin_Settings
             $checked = 1;
         }
         Woo_Usn_UI_Fields::format_html_fields( __( 'The vendor phone number will receive an automated SMS once a customer purchases products from his shop. ( Pro Feature )', 'ultimate-sms-notifications' ) );
-        echo  "<br/>" ;
-        Woo_Usn_UI_Fields::format_html_fields( wp_sprintf( "<a href='%s'>%s</a>", admin_url( "admin.php?page=ultimate-sms-notifications-pricing" ), __( 'Click here to upgrade', 'ultimate-sms-notifications' ) ) );
+        echo  '<br/>' ;
+        Woo_Usn_UI_Fields::format_html_fields( wp_sprintf( "<a href='%s'>%s</a>", admin_url( 'admin.php?page=ultimate-sms-notifications-pricing' ), __( 'Click here to upgrade', 'ultimate-sms-notifications' ) ) );
     }
-
-    public static function display_consent_sms() {
-		$message  =  __('By enabling, customers can decide if they want to receive mobile notifications.', 'ultimate-sms-notifications' );
-		$message .= "<br/>" .  wp_sprintf("<a href='%s'>%s</a>", admin_url("admin.php?page=ultimate-sms-notifications-pricing"), __('Click here to upgrade', 'ultimate-sms-notifications' ) );
-
-		Woo_Usn_UI_Fields::format_html_fields( $message );
-		
-	}
     
     /**
      * Display admin template messages fields.
@@ -530,7 +537,7 @@ class Woo_Usn_Admin_Settings
             'required'    => true,
             'input_class' => array( 'woousn-textarea' ),
             'placeholder' => __( 'Please put the default sms to send.', 'ultimate-sms-notifications' ),
-            'default'     => $options['woo_usn_admin_messages_template'] ?? "",
+            'default'     => $options['woo_usn_admin_messages_template'] ?? '',
         ) );
     }
     
@@ -542,7 +549,7 @@ class Woo_Usn_Admin_Settings
             'required'    => true,
             'input_class' => array( 'woousn-textarea' ),
             'placeholder' => __( 'Please put the default sms to send.', 'ultimate-sms-notifications' ),
-            'default'     => $options['woo_usn_vendor_messages_template'] ?? "",
+            'default'     => $options['woo_usn_vendor_messages_template'] ?? '',
         ) );
     }
     
@@ -557,8 +564,8 @@ class Woo_Usn_Admin_Settings
         if ( $display_settings ) {
             ob_start();
             ?>
-            <div class="woousn-settings-panel usn-center-panel-values" id="usn-contents">
-                <h3><?php 
+			<div class="woousn-settings-panel usn-center-panel-values" id="usn-contents">
+				<h3><?php 
             esc_html_e( 'Configure SMS Gateways', 'ultimate-sms-notifications' );
             ?></h3>
 				<?php 
@@ -572,17 +579,17 @@ class Woo_Usn_Admin_Settings
                 
                 if ( is_string( $item_id ) ) {
                     $selected = ( $options === $item_id ? 'selected="selected"' : '' );
-                    $api_html .= "<option value='" . $item_id . "' {$selected}>" . $item_value . "</option>";
+                    $api_html .= "<option value='" . $item_id . "' {$selected}>" . $item_value . '</option>';
                 } else {
                     $selected = ( $options === $item_value ? 'selected="selected"' : '' );
                     $api_html .= "<option value='{$item_value}' {$selected}>{$item_value}</option>";
                 }
             
             }
-            $api_html .= "</select>";
+            $api_html .= '</select>';
             Woo_Usn_UI_Fields::format_html_fields( $api_html );
             ?>
-                <div id="woo_usn_api_telesign" class="wrap" style="display : block;" data-name="telesign">
+				<div id="woo_usn_api_telesign" class="wrap" style="display : block;" data-name="telesign">
 					<?php 
             Woo_Usn_UI_Fields::format_html_fields( 'Set Telesign by providing information necessary in the fields below.<br/>' );
             Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
@@ -607,9 +614,9 @@ class Woo_Usn_Admin_Settings
             ) );
             Woo_Usn_UI_Fields::format_html_fields( "You will need a Customer ID and API Key in order to use TeleSign’s API. If you already have an account you can retrieve\n\t\tthem from your account dashboard within the  <a href='https://portal.telesign.com/login'>Portal</a>. If you have not signed up\n\t\tyet, sign up <a href='https://portal.telesign.com/signup'>here</a>." );
             ?>
-                </div>
+				</div>
 
-                <div id="woo_usn_api_twilio" class="wrap" style="display : none;" data-name="twilio">
+				<div id="woo_usn_api_twilio" class="wrap" style="display : none;" data-name="twilio">
 					<?php 
             Woo_Usn_UI_Fields::format_html_fields( 'Set Twilio by providing information necessary in the fields below.<br/>' );
             echo  '<br/>' ;
@@ -644,18 +651,18 @@ class Woo_Usn_Admin_Settings
             ) );
             _e( "You will need a Account SID and Auth Token in order to use Twilio's API. If you already have an account you can retrieve\n\t\t\tthem from your Twilio Console within the  <a href='www.twilio.com/referral/bc0mtq' target='__blank'>Console</a>. If you have not signed up\n\t\t\tyet, sign up <a href='www.twilio.com/referral/bc0mtq' target='__blank'>here</a>.", 'ultimate-sms-notifications' );
             ?>
-                </div>
+				</div>
 				<?php 
             do_action( 'woo_usn_options_before_saving_sms_api_fields' );
             ?>
-            </div>
+			</div>
 			<?php 
         }
         
         $sms_output_html = ob_get_clean();
         // add filter for replace the view displaying api fields.
         $sms_output_html = apply_filters( 'woo_usn_edit_sms_gateways_fields_html', $sms_output_html );
-        echo  Woo_Usn_UI_Fields::format_html_fields( $sms_output_html ) ;
+        Woo_Usn_UI_Fields::format_html_fields( $sms_output_html );
         ?>
 		<div id="woo_usn_testing_sections" class="wrap">
 			<?php 
@@ -668,7 +675,7 @@ class Woo_Usn_Admin_Settings
             'id' => 'woo_usn_saving',
         )
         );
-        echo  "&nbsp;" ;
+        echo  '&nbsp;' ;
         submit_button(
             __( 'Delete API Credentials ', 'ultimate-sms-notifications' ),
             'primary',
@@ -679,21 +686,21 @@ class Woo_Usn_Admin_Settings
         )
         );
         ?>
-        </div>
-        <br/>
-        <div class="woousn-cl-loader" style="display: none;"></div>
-        <div class="woo_usn_modal_body"></div>
-        <span class="woo_usn_panels" id="woo_usn_saving_status" style="display:none;"></span>
-        <div id="woo_usn_testing_sections" class="wrap">
-            <h3><?php 
+		</div>
+		<br/>
+		<div class="woousn-cl-loader" style="display: none;"></div>
+		<div class="woo_usn_modal_body"></div>
+		<span class="woo_usn_panels" id="woo_usn_saving_status" style="display:none;"></span>
+		<div id="woo_usn_testing_sections" class="wrap">
+			<h3><?php 
         esc_html_e( 'Status', 'ultimate-sms-notifications' );
         ?></h3>
 			<?php 
         esc_html_e( 'Send test messages to a number to find out if your API credentials are working properly.', 'ultimate-sms-notifications' );
         ?>
-            <br/>
+			<br/>
 
-            <br/>
+			<br/>
 			<?php 
         homescript_input_fields( 'woo_usn_testing_numbers', array(
             'required'    => true,
@@ -724,13 +731,13 @@ class Woo_Usn_Admin_Settings
         )
         );
         ?>
-        </div>
-        <br/>
-        <div class="woousn-cl-status" style="display: none;"></div>
+		</div>
+		<br/>
+		<div class="woousn-cl-status" style="display: none;"></div>
 
-        <div class="woousn-body-cl-status">
-        </div>
-        </div>
+		<div class="woousn-body-cl-status">
+		</div>
+		</div>
 		<?php 
     }
     
@@ -780,7 +787,7 @@ class Woo_Usn_Admin_Settings
             'input_class' => array( 'woousn-text-customs' ),
             'placeholder' => '+1234567890',
         );
-        homescript_input_fields( 'woo_usn_options[woo_usn_admin_numbers]', $display_options, ( isset( $options['woo_usn_admin_numbers'] ) ? esc_attr( $options['woo_usn_admin_numbers'] ) : "" ) );
+        homescript_input_fields( 'woo_usn_options[woo_usn_admin_numbers]', $display_options, ( isset( $options['woo_usn_admin_numbers'] ) ? esc_attr( $options['woo_usn_admin_numbers'] ) : '' ) );
     }
     
     /**
@@ -838,7 +845,6 @@ class Woo_Usn_Admin_Settings
                 <strong style="background-color : #5ce1e6;">%vendor_order_link%</strong> : Vendor Order Link<br/> 
                 
                 You can still use, the normal tags listed below for sending SMS to the vendors too.
-              
                 ' );
         }
     
@@ -866,7 +872,7 @@ class Woo_Usn_Admin_Settings
             'required'    => true,
             'input_class' => array( 'woousn-textarea' ),
             'placeholder' => __( 'Please put the default sms to send.', 'ultimate-sms-notifications' ),
-            'default'     => $options['woo_usn_completed_messages'] ?? "",
+            'default'     => $options['woo_usn_completed_messages'] ?? '',
         ) );
     }
     
@@ -881,7 +887,7 @@ class Woo_Usn_Admin_Settings
             'required'    => true,
             'input_class' => array( 'woousn-textarea' ),
             'placeholder' => __( 'Please put the default sms to send.', 'ultimate-sms-notifications' ),
-            'default'     => $options['woo_usn_processing_messages'] ?? "",
+            'default'     => $options['woo_usn_processing_messages'] ?? '',
         ) );
     }
     
@@ -896,7 +902,7 @@ class Woo_Usn_Admin_Settings
             'required'    => true,
             'input_class' => array( 'woousn-textarea' ),
             'placeholder' => __( 'Please put the default sms to send.', 'ultimate-sms-notifications' ),
-            'default'     => $options['woo_usn_cancelled_messages'] ?? "",
+            'default'     => $options['woo_usn_cancelled_messages'] ?? '',
         ) );
     }
     
@@ -911,7 +917,7 @@ class Woo_Usn_Admin_Settings
             'required'    => true,
             'input_class' => array( 'woousn-textarea' ),
             'placeholder' => __( 'Please put the default sms to send.', 'ultimate-sms-notifications' ),
-            'default'     => $options['woo_usn_on_hold_messages'] ?? "",
+            'default'     => $options['woo_usn_on_hold_messages'] ?? '',
         ) );
     }
     
@@ -926,7 +932,7 @@ class Woo_Usn_Admin_Settings
             'required'    => true,
             'input_class' => array( 'woousn-textarea' ),
             'placeholder' => __( 'Please put the default sms to send.', 'ultimate-sms-notifications' ),
-            'default'     => $options['woo_usn_pending_payment_messages'] ?? "",
+            'default'     => $options['woo_usn_pending_payment_messages'] ?? '',
         ) );
     }
     
@@ -941,7 +947,7 @@ class Woo_Usn_Admin_Settings
             'required'    => true,
             'input_class' => array( 'woousn-textarea' ),
             'placeholder' => __( 'Please put the default sms to send.', 'ultimate-sms-notifications' ),
-            'default'     => $options['woo_usn_failed_messages'] ?? "",
+            'default'     => $options['woo_usn_failed_messages'] ?? '',
         ) );
     }
     
@@ -956,7 +962,7 @@ class Woo_Usn_Admin_Settings
             'required'    => true,
             'input_class' => array( 'woousn-textarea' ),
             'placeholder' => __( 'Please put the default sms to send.', 'ultimate-sms-notifications' ),
-            'default'     => $options['woo_usn_refunded_messages'] ?? "",
+            'default'     => $options['woo_usn_refunded_messages'] ?? '',
         ) );
     }
     
@@ -971,7 +977,7 @@ class Woo_Usn_Admin_Settings
             'required'    => true,
             'input_class' => array( 'woo_usn_messages_to_send', 'woousn-textarea' ),
             'placeholder' => __( 'Please put the default sms to send.', 'ultimate-sms-notifications' ),
-            'default'     => $options['woo_usn_defaults_messages'] ?? "",
+            'default'     => $options['woo_usn_defaults_messages'] ?? '',
         ) );
     }
     
@@ -1005,7 +1011,7 @@ class Woo_Usn_Admin_Settings
     public static function add_external_api_fields()
     {
         ?>
-        <div id="woo_usn_api_kivalo" class="wrap" data-name="kivalo" style="display:none;">
+		<div id="woo_usn_api_kivalo" class="wrap" data-name="kivalo" style="display:none;">
 			<?php 
         Woo_Usn_UI_Fields::format_html_fields( 'Set Kivalo by providing information necessary in the fields below.<br/>' );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
@@ -1030,9 +1036,9 @@ class Woo_Usn_Admin_Settings
         ) );
         Woo_Usn_UI_Fields::format_html_fields( "You will need a Kivalo From Phone Number and API Key in order to use Kivalo’s API. If you already have an account you can retrieve\n\t\tthem from your account dashboard within the  <a href='https://sms.kivalosolutions.com'>Portal</a>. If you have not signed up\n\t\tyet, sign up <a href='https://sms.kivalosolutions.com/signup'>here</a>." );
         ?>
-        </div>
+		</div>
 
-        <div id="woo_usn_api_waapi" class="wrap" data-name="kivalo" style="display:none;">
+		<div id="woo_usn_api_waapi" class="wrap" data-name="kivalo" style="display:none;">
 			<?php 
         Woo_Usn_UI_Fields::format_html_fields( 'Set Waapi by providing information necessary in the fields below.<br/>' );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
@@ -1068,8 +1074,8 @@ class Woo_Usn_Admin_Settings
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
         Woo_Usn_UI_Fields::format_html_fields( "You will need a Waapi Client ID and Instance ID in order to send Whatsapp messages. If you already have an account you can retrieve\n\t\tthem from your account <a href='https://checkout.waapi.co/api/affurl/0elOEJ0M4As1ENZ1n/HLKBxj10HmbMiA8o?target=Vpas2KguYoFAg08o' target='__blank'>dashboard</a>  or watching this video <a href ='https://www.youtube.com/watch?v=zoaGETg0eZY'>here</a> to see how to do." );
         ?>
-        </div>
-        <div id="woo_usn_api_messagebird" class="wrap" data-name="messagebird" style="display:none;">
+		</div>
+		<div id="woo_usn_api_messagebird" class="wrap" data-name="messagebird" style="display:none;">
 			<?php 
         Woo_Usn_UI_Fields::format_html_fields( 'Set Message Bird by providing information necessary in the fields below.<br/>' );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
@@ -1096,8 +1102,8 @@ class Woo_Usn_Admin_Settings
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
         Woo_Usn_UI_Fields::format_html_fields( "You will need a Message Bird <a href='https://dashboard.messagebird.com/en/developers/settings' target='__blank'> API Key </a> and <a href='https://support.messagebird.com/hc/en-us/articles/115002628665-What-is-the-originator-#:~:text=An%20originator%20is%20the%20name,which%20it%20has%20been%20sent'> Originator </a> in order to send SMS. " );
         ?>
-        </div>
-        <div id="woo_usn_api_sendchamp" class="wrap" data-name="sendchamp" style="display:none;">
+		</div>
+		<div id="woo_usn_api_sendchamp" class="wrap" data-name="sendchamp" style="display:none;">
 			<?php 
         Woo_Usn_UI_Fields::format_html_fields( 'Set SendChamp by providing information necessary in the fields below.<br/>' );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
@@ -1107,7 +1113,7 @@ class Woo_Usn_Admin_Settings
             'input_class' => array( 'woousn-text-customs-api' ),
             'required'    => true,
             'placeholder' => 'https://api.sendchamp.com/api/v1/sms/send/',
-            'default'     => esc_attr( get_option( 'woo_usn_sendchamp_domain_url', "https://api.sendchamp.com/api/v1/sms/send/" ) ),
+            'default'     => esc_attr( get_option( 'woo_usn_sendchamp_domain_url', 'https://api.sendchamp.com/api/v1/sms/send/' ) ),
             'description' => __( "You can retrieve it from your <a href='https://my.sendchamp.com/accountSettings' target='__blank'>SendChamp account</a>.", 'ultimate-sms-notifications' ),
         ) );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
@@ -1134,17 +1140,17 @@ class Woo_Usn_Admin_Settings
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
         Woo_Usn_UI_Fields::format_html_fields( "You will need a SendChamp <a href='https://my.sendchamp.com/' target='__blank'> API Key </a> and <a href='https://support.sendchamp.com/article/13-a-guide-on-how-to-get-your-api-keys' target='__blank'> Channel ID </a> in order to send SMS. " );
         ?>
-        </div>
+		</div>
 		<div id="woo_usn_api_avlytext" class="wrap" data-name="avlytext" style="display:none;">
 		<?php 
         $api_choosed = get_option( 'woo_usn_api_choosed' );
         Woo_Usn_UI_Fields::format_html_fields( 'Set AvlyText by providing information necessary in the fields below.<br/>' );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
         $woo_usn_creds = get_option( 'woo_usn_creds', false );
-        $first_data = "";
-        $second_data = "";
+        $first_data = '';
+        $second_data = '';
         
-        if ( "AvlyText" == $api_choosed ) {
+        if ( 'AvlyText' == $api_choosed ) {
             $first_data = $woo_usn_creds['first'];
             $second_data = $woo_usn_creds['second'];
         }
@@ -1172,7 +1178,7 @@ class Woo_Usn_Admin_Settings
             'placeholder' => 'My Shop',
             'required'    => true,
             'default'     => esc_attr( $second_data ),
-            'description' => __( "Define the name of the sender you would like to have displayed when sending SMS.", 'ultimate-sms-notifications' ),
+            'description' => __( 'Define the name of the sender you would like to have displayed when sending SMS.', 'ultimate-sms-notifications' ),
         ),
             esc_attr( $second_data ),
             true
@@ -1186,10 +1192,10 @@ class Woo_Usn_Admin_Settings
         Woo_Usn_UI_Fields::format_html_fields( 'Set Octopush by providing information necessary in the fields below.<br/>' );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
         $woo_usn_creds = get_option( 'woo_usn_creds', false );
-        $first_data = "";
-        $second_data = "";
+        $first_data = '';
+        $second_data = '';
         
-        if ( "Octopush" == $api_choosed ) {
+        if ( 'Octopush' == $api_choosed ) {
             $first_data = $woo_usn_creds['first'];
             $second_data = $woo_usn_creds['second'];
         }
@@ -1230,10 +1236,10 @@ class Woo_Usn_Admin_Settings
         Woo_Usn_UI_Fields::format_html_fields( 'Set Tyntec SMS by providing information necessary in the fields below.<br/>' );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
         $woo_usn_creds = get_option( 'woo_usn_creds', false );
-        $first_data = "";
-        $second_data = "";
+        $first_data = '';
+        $second_data = '';
         
-        if ( "tyntecsms" == $api_choosed ) {
+        if ( 'tyntecsms' == $api_choosed ) {
             $first_data = $woo_usn_creds['first'];
             $second_data = $woo_usn_creds['second'];
         }
@@ -1260,7 +1266,7 @@ class Woo_Usn_Admin_Settings
             'input_class' => array( 'woousn-text-customs-api' ),
             'placeholder' => 'My Shop',
             'required'    => true,
-            'description' => __( "Define the SMS Sender Name.", 'ultimate-sms-notifications' ),
+            'description' => __( 'Define the SMS Sender Name.', 'ultimate-sms-notifications' ),
         ),
             esc_attr( $second_data ),
             true
@@ -1275,10 +1281,10 @@ class Woo_Usn_Admin_Settings
         Woo_Usn_UI_Fields::format_html_fields( 'Set Fast2SMS by providing information necessary in the fields below.<br/>' );
         Woo_Usn_UI_Fields::format_html_fields( '<br/>' );
         $woo_usn_creds = get_option( 'woo_usn_creds', false );
-        $first_data = "";
-        $second_data = "";
+        $first_data = '';
+        $second_data = '';
         
-        if ( "fast2sms" == $api_choosed ) {
+        if ( 'fast2sms' == $api_choosed ) {
             $first_data = $woo_usn_creds['first'];
             $second_data = $woo_usn_creds['second'];
         }
@@ -1312,17 +1318,17 @@ class Woo_Usn_Admin_Settings
     public static function send_sms()
     {
         ?>
-        <div>
-            <h3><?php 
+		<div>
+			<h3><?php 
         Woo_Usn_UI_Fields::format_html_fields( 'Send a Quick SMS' );
         ?></h3>
 			<br/>
 			<?php 
         
-        if ( isset( $_GET['page'] ) && "ultimate-sms-notifications-send-sms" === $_GET['page'] ) {
+        if ( isset( $_GET['page'] ) && 'ultimate-sms-notifications-send-sms' === $_GET['page'] ) {
             ?>
 						<span><?php 
-            echo  __( 'Send a Quick SMS to a relative, family, customer in less than a second from your WordPress dashboard.', 'ultimate-sms-notifications' ) ;
+            echo  esc_html__( 'Send a Quick SMS to a relative, family, customer in less than a second from your WordPress dashboard.', 'ultimate-sms-notifications' ) ;
             ?></span>
 					<?php 
         }
@@ -1330,12 +1336,12 @@ class Woo_Usn_Admin_Settings
         ?>
 			<br/>
 			<br/>
-        </div>
-        <div id="sms-block">
+		</div>
+		<div id="sms-block">
 			<?php 
         $sms_options_list = apply_filters( 'woo_usn_qs_selection_mode', array(
             'use-phone-number'         => __( 'Using Phone Number', 'ultimate-sms-notifications' ),
-            'use-contact-list-premium' => wp_kses_post( '<span>' . __( 'Using Contact List ( Pro Feature )', 'ultimate-sms-notifications' ) . " " . wp_sprintf( "<a href='%s'>%s</a>", admin_url( "admin.php?page=ultimate-sms-notifications-pricing" ), __( 'Click here to upgrade', 'ultimate-sms-notifications' ) ) . '</span>' ),
+            'use-contact-list-premium' => wp_kses_post( '<span>' . __( 'Using Contact List ( Pro Feature )', 'ultimate-sms-notifications' ) . ' ' . wp_sprintf( "<a href='%s'>%s</a>", admin_url( 'admin.php?page=ultimate-sms-notifications-pricing' ), __( 'Click here to upgrade', 'ultimate-sms-notifications' ) ) . '</span>' ),
         ) );
         ?>
 				<?php 
@@ -1350,7 +1356,7 @@ class Woo_Usn_Admin_Settings
         ?>
 					<br/>
 					<br/>
-		    
+			
 			<div class="woo-usn-use-phone-number woo-usn-use-contact-list-premium woo-usn-qs-class" >
 			<?php 
         homescript_input_fields( 'woo_usn_testing_numbers', array(
@@ -1382,7 +1388,7 @@ class Woo_Usn_Admin_Settings
             'placeholder' => __( 'Type your message here.', 'ultimate-sms-notifications' ),
         ) );
         
-        if ( isset( $_GET['page'] ) && "ultimate-sms-notifications-send-sms" === $_GET['page'] ) {
+        if ( isset( $_GET['page'] ) && 'ultimate-sms-notifications-send-sms' === $_GET['page'] ) {
             $sms_message_text = __( 'Try SMS Sending', 'ultimate-sms-notifications' );
         } else {
             $sms_message_text = __( 'Send Test SMS', 'ultimate-sms-notifications' );
@@ -1398,13 +1404,13 @@ class Woo_Usn_Admin_Settings
         )
         );
         ?>
-        </div>
-        <br/>
-        <div class="woousn-cl-status" style="display: none;"></div>
+		</div>
+		<br/>
+		<div class="woousn-cl-status" style="display: none;"></div>
 
-        <div class="woousn-body-cl-status">
-        </div>
-        </div>
+		<div class="woousn-body-cl-status">
+		</div>
+		</div>
 		<?php 
     }
     
@@ -1430,13 +1436,12 @@ class Woo_Usn_Admin_Settings
             'required'    => true,
             'input_class' => array( 'woousn-textarea' ),
             'placeholder' => __( 'Please put the default sms to send.', 'ultimate-sms-notifications' ),
-            'default'     => $options['woo_usn_defaults_customer_signup'] ?? "",
+            'default'     => $options['woo_usn_defaults_customer_signup'] ?? '',
         ) );
     }
     
     public static function display_customer_signup_tags()
     {
-        global  $usn_utility ;
         Woo_Usn_UI_Fields::format_html_fields( '<p> Use these tags to customize your message : </p>' );
         Woo_Usn_UI_Fields::format_html_fields( '<strong style="background-color : #5ce1e6;">%store_name%</strong> : Store Name <br/> <strong style="background-color : #5ce1e6;">%customer_name%</strong> : Customer Name  <br/> <strong style="background-color : #5ce1e6;">%customer_phone_number%</strong> : Customer Phone Number <br/>' );
     }
@@ -1478,28 +1483,24 @@ class Woo_Usn_Admin_Settings
             'maxlength'   => 160,
         ) );
         ?>
-        <input type="submit" name="woo_usn_sms_submit" id="woo_usn_sms_submit" class="button button-primary"
-               value="<?php 
+		<input type="submit" name="woo_usn_sms_submit" id="woo_usn_sms_submit" class="button button-primary" value="<?php 
         esc_html_e( 'Send', 'ultimate-sms-notifications' );
-        ?>"
-               style="width:80px; word-wrap: break-word;">
-        <br/>
-        <br/>
-        <textarea id="phone_number" class="woousn-textarea" maxlength='160' order_id='<?php 
+        ?>" style="width:80px; word-wrap: break-word;">
+		<br/>
+		<br/>
+		<textarea id="phone_number" class="woousn-textarea" maxlength='160' order_id='<?php 
         echo  esc_attr( $id ) ;
-        ?>'
-                  order_status='<?php 
+        ?>' order_status='<?php 
         echo  esc_attr( $order_status ) ;
-        ?>' rows="5"
-                  style="display : none; height:83px; width : 254px;" readonly></textarea>
-        <br/>
-        <div class="woousn-cl-loader" style="display: none;"></div>
+        ?>' rows="5" style="display : none; height:83px; width : 254px;" readonly></textarea>
+		<br/>
+		<div class="woousn-cl-loader" style="display: none;"></div>
 		<?php 
     }
     
     public static function get_un_reasons( $reasons )
     {
-        //Woo_Usn_Utility::log_errors( print_r( $reasons, true ));
+        // Woo_Usn_Utility::log_errors( print_r( $reasons, true ));
         return $reasons;
     }
 

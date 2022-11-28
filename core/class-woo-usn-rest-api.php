@@ -9,7 +9,8 @@ add_action(
 			array(
 				'methods'  => 'POST',
 				'callback' => 'woo_usn_send_mobile_notif_by_rest',
-			)
+			),
+			true
 		);
 	}
 );

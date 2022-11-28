@@ -4,7 +4,7 @@ Tags: orders notifications, woocommerce whatsapp, whatsapp automations, woocomme
 Donate link: https://buymeacoffee.com/homescriptone/  
 Requires at least: 4.4  
 Tested up to: 6.1   
-Stable tag: 1.9.8.2     
+Stable tag: 1.9.8.3     
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt    
 

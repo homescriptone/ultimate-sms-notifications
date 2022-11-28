@@ -1,6 +1,5 @@
 <?php
 
-// phpcs:ignorefile
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -306,7 +305,7 @@ class Woo_Usn_Admin
                     }
                     $orders_messages = '<br/><strong>' . __( 'Phone Numbers : ', 'ultimate-sms-notifications' ) . '</strong>' . $phone_number . '<br/><strong>' . __( 'Message sent : ', 'ultimate-sms-notifications' ) . '</strong>' . $message . '<br/><strong>' . __( 'Delivery Messages Status : ', 'ultimate-sms-notifications' ) . '</strong>' . $return . '<br/>' . 'Sent from <strong>Ultimate SMS & WhatsApp Notifications for WooCommerce</strong>';
                     $order->add_order_note( $orders_messages );
-                    echo  $return ;
+                    Woo_Usn_UI_Fields::format_html_fields( $return );
                 } else {
                     esc_html_e( 'Please fill messages and phone numbers fields before press Send.', 'ultimate-sms-notifications' );
                 }
@@ -365,40 +364,40 @@ class Woo_Usn_Admin
     
     public function check_requirements()
     {
-        //Check if WC is installed.
+        // Check if WC is installed.
         global  $usn_utility, $usn_api_is_defined ;
         $usn_utility::is_wc_active( 'admin' );
         $usn_utility::get_api_credentials();
         $options = get_option( 'woo_usn_wha_api_details' );
         
         if ( !$usn_api_is_defined ) {
-            if ( isset( $options["api_choosed"] ) ) {
+            if ( isset( $options['api_choosed'] ) ) {
                 return;
             }
             $links = '<a href="admin.php?page=ultimate-sms-notifications&tab=sms-api" >' . __( 'you can setup the plugin here', 'ultimate-sms-notifications' ) . '</a>';
             ?>
-            <div class=" notice notice-error">
-                <p>
+			<div class=" notice notice-error">
+				<p>
 					<?php 
             Woo_Usn_UI_Fields::format_html_fields( wp_sprintf( '<strong>Ultimate SMS & WhatsApp Notifications for WooCommerce is almost ready.</strong> To get started, %s.', $links ) );
             ?>
-                </p>
-            </div>
+				</p>
+			</div>
 			<?php 
         }
         
         $options = get_option( 'woo_usn_options' );
         if ( isset( $options['woo_usn_sms_to_vendors'] ) ) {
             
-            if ( !function_exists( 'wcfm_get_vendor_id_by_post' ) && !function_exists( "dokan" ) ) {
+            if ( !function_exists( 'wcfm_get_vendor_id_by_post' ) && !function_exists( 'dokan' ) ) {
                 ?>
-                <div class=" notice notice-error">
-                    <p>
+				<div class=" notice notice-error">
+					<p>
 						<?php 
-                echo  __( '<strong>SMS Notifications to vendors</strong> requires <strong>Dokan</strong>/<strong>WCFM Vendors</strong> in order to work. ', 'ultimate-sms-notifications' ) ;
+                Woo_Usn_UI_Fields::format_html_fields( '<strong>SMS Notifications to vendors</strong> requires <strong>Dokan</strong>/<strong>WCFM Vendors</strong> in order to work. ', 'ultimate-sms-notifications' );
                 ?>
-                    </p>
-                </div>
+					</p>
+				</div>
 				<?php 
             }
         
@@ -416,36 +415,36 @@ class Woo_Usn_Admin
         
         // display newsletters banner.
         ?>
-        <div id="woo_usn_banner" class="notice notice-info" style="<?php 
-        echo  $display_banner ;
+		<div id="woo_usn_banner" class="notice notice-info" style="<?php 
+        Woo_Usn_UI_Fields::format_html_fields( $display_banner );
         ?>">
-            <p>
-                <img id="woorci-logo" src="<?php 
+			<p>
+				<img id="woorci-logo" src="<?php 
         echo  WOO_USN_URL . '../admin/img/usn.svg' ;
         ?>"
-                     style="width : 50px; float :left;">
-            <div id="woousn-thank-you" style="display : inline;">
-                <p id="woorci-banner-content"><strong
-                            style="font-size : 15px;"><?php 
-        _e( 'Enjoying Ultimate SMS & WhatsApp Notifications for WooCommerce?', 'ultimate-sms-notifications' );
+					 style="width : 50px; float :left;">
+			<div id="woousn-thank-you" style="display : inline;">
+				<p id="woorci-banner-content"><strong
+							style="font-size : 15px;"><?php 
+        esc_html_e( 'Enjoying Ultimate SMS & WhatsApp Notifications for WooCommerce?', 'ultimate-sms-notifications' );
         ?></strong>
-                    <br/> <?php 
-        _e( ' Hope that you had a neat and snappy experience with the plugin. Would you please show us a little love by rating us in the WordPress.org?', 'ultimate-sms-notifications' );
+					<br/> <?php 
+        esc_html_e( ' Hope that you had a neat and snappy experience with the plugin. Would you please show us a little love by rating us in the WordPress.org?', 'ultimate-sms-notifications' );
         ?>
-                </p>
-                <p style="position: relative; left: 1px; top: -8px;">
-                    <a href="https://wordpress.org/support/plugin/ultimate-sms-notifications/reviews/#postform"
-                       id="usn-review" target="_blank"><span class="dashicons dashicons-external"></span>Sure! I'd love
-                        to!</a>
-                    &nbsp
-                    <a href="#" id="usn-already-give-review"><span class="dashicons dashicons-smiley"></span>I've
-                        already
-                        left a review</a> &nbsp
-                    <a href="#" id="usn-never-show-again"><span class="dashicons dashicons-dismiss"></span>Never show
-                        again</a>
-                </p>
-            </div>
-        </div>
+				</p>
+				<p style="position: relative; left: 1px; top: -8px;">
+					<a href="https://wordpress.org/support/plugin/ultimate-sms-notifications/reviews/#postform"
+					   id="usn-review" target="_blank"><span class="dashicons dashicons-external"></span>Sure! I'd love
+						to!</a>
+					&nbsp
+					<a href="#" id="usn-already-give-review"><span class="dashicons dashicons-smiley"></span>I've
+						already
+						left a review</a> &nbsp
+					<a href="#" id="usn-never-show-again"><span class="dashicons dashicons-dismiss"></span>Never show
+						again</a>
+				</p>
+			</div>
+		</div>
 		<?php 
         do_action( 'woo_usn_admin_notices' );
     }
@@ -480,21 +479,21 @@ class Woo_Usn_Admin
                 update_option( 'woo_usn_kivalo_from_phone_number', $first_api_key );
                 update_option( 'woo_usn_kivalo_api_key', $second_api_key );
                 $success = 1;
-            } elseif ( "WA API" == $api_choosed ) {
+            } elseif ( 'WA API' == $api_choosed ) {
                 update_option( 'woo_usn_waapi_client_id', $first_api_key );
                 update_option( 'woo_usn_waapi_instance_id', $second_api_key );
                 update_option( 'woo_usn_waapi_domain_url', $data['api_domain'] );
                 $success = 1;
-            } elseif ( "Message Bird" == $api_choosed ) {
+            } elseif ( 'Message Bird' == $api_choosed ) {
                 update_option( 'woo_usn_message_bird_from_number', $first_api_key );
                 update_option( 'woo_usn_message_bird_api_key', $second_api_key );
                 $success = 1;
-            } elseif ( "SendChamp" == $api_choosed ) {
+            } elseif ( 'SendChamp' == $api_choosed ) {
                 update_option( 'woo_usn_sendchamp_from_number', $first_api_key );
                 update_option( 'woo_usn_sendchamp_api_key', $second_api_key );
                 update_option( 'woo_usn_sendchamp_domain_url', $data['api_domain'] );
                 $success = 1;
-            } elseif ( "twilio_whatsapp" == $api_choosed ) {
+            } elseif ( 'twilio_whatsapp' == $api_choosed ) {
                 $twilio_phone_number = sanitize_text_field( $data['woo_usn_twilio_whatsapp_phone_number'] );
                 if ( !$twilio_phone_number ) {
                     return $success;
@@ -503,7 +502,7 @@ class Woo_Usn_Admin
                 update_option( 'woo_usn_twilio_auth_token', $second_api_key );
                 update_option( 'woo_usn_twilio_whatsapp_phone_number', $twilio_phone_number );
                 $success = 1;
-            } elseif ( "eBulkSMS" == $api_choosed ) {
+            } elseif ( 'eBulkSMS' == $api_choosed ) {
                 $ebulksms_phone_number = sanitize_text_field( $data['woo_usn_ebulksms_phone_number'] );
                 update_option( 'woo_usn_ebulksms_username', $first_api_key );
                 update_option( 'woo_usn_ebulksms_api_key', $second_api_key );
@@ -556,7 +555,7 @@ class Woo_Usn_Admin
                 delete_option( 'woo_usn_waapi_instance_id' );
                 delete_option( 'woo_usn_waapi_domain_url' );
                 $return = 1;
-            } elseif ( "Message Bird" == $this->api_choosed ) {
+            } elseif ( 'Message Bird' == $this->api_choosed ) {
                 delete_option( 'woo_usn_message_bird_from_number' );
                 delete_option( 'woo_usn_message_bird_api_key' );
                 $return = 1;
@@ -580,8 +579,8 @@ class Woo_Usn_Admin
         $security = $posted_data['security'];
         
         if ( wp_verify_nonce( $security, 'woo-usn-ajax-nonce' ) ) {
-            $cl = $posted_data['data']["contact-list"];
-            $msg = $posted_data['data']["testing-messages"];
+            $cl = $posted_data['data']['contact-list'];
+            $msg = $posted_data['data']['testing-messages'];
             $order_lists = Woo_Usn_Customer_List::get_customer_details_from_id( $cl );
             foreach ( $order_lists as $order_id ) {
                 $_order = new WC_Order( $order_id );

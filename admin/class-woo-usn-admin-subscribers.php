@@ -1,7 +1,4 @@
 <?php
-// phpcs:ignorefile
-
-use Faker\Provider\DateTime;
 
 if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
@@ -20,9 +17,12 @@ class Woo_Usn_Subscribers extends WP_List_Table {
 			)
 		);
 
-        add_action('admin_enqueue_scripts', function() {
-            wp_enqueue_script( 'fontawesome','https://kit.fontawesome.com/a076d05399.js', array(), uniqid(), true );
-        });
+		add_action(
+			'admin_enqueue_scripts',
+			function() {
+				wp_enqueue_script( 'fontawesome', 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/js/fontawesome.min.js', array(), uniqid(), true );
+			}
+		);
 
 	}
 
@@ -52,7 +52,7 @@ class Woo_Usn_Subscribers extends WP_List_Table {
 		return $wpdb->get_results( $sql, 'ARRAY_A' );
 	}
 
-	public static function get_customer_choices( $choice='on' ) {
+	public static function get_customer_choices( $choice = 'on' ) {
 
 		global $wpdb;
 
@@ -94,7 +94,7 @@ class Woo_Usn_Subscribers extends WP_List_Table {
 
 	/** Text displayed when no customer data is available */
 	public function no_items() {
-		_e( 'No logs avaliable.', 'sp' );
+		esc_html_e( 'No logs avaliable.', 'ultimate-sms-notifications' );
 	}
 
 
@@ -108,34 +108,33 @@ class Woo_Usn_Subscribers extends WP_List_Table {
 	 */
 	public function column_default( $item, $column_name ) {
 		switch ( $column_name ) {
-            case 'customer_id':
-                $customer_id = $item['customer_id'];
-                $customer = new WC_Customer( $customer_id );
-                $fname = $customer->get_billing_first_name() . " " .  $customer->get_billing_last_name();
-                echo wp_kses_post( '<a href="'.admin_url( 'user-edit.php?user_id='.$customer_id ) . '">'. $fname . '</a>' );
-                break;
+			case 'customer_id':
+				$customer_id = $item['customer_id'];
+				$customer    = new WC_Customer( $customer_id );
+				$fname       = $customer->get_billing_first_name() . ' ' . $customer->get_billing_last_name();
+				echo wp_kses_post( '<a href="' . admin_url( 'user-edit.php?user_id=' . $customer_id ) . '">' . $fname . '</a>' );
+				break;
 
-            case 'customer_registered_page':
-                echo ucfirst( $item['customer_registered_page']);
-                break;
+			case 'customer_registered_page':
+				echo esc_attr( ucfirst( $item['customer_registered_page'] ) );
+				break;
 
-            case 'customer_consent':
-                $consent = $item['customer_consent'];
-                if ( 'on' == $consent ) {
-                    echo '<i class="fa fa-check" style="color:green;"></i>' . __( 'Subscribed', 'ultimate-sms-notifications' );
-                } else {
-                    echo '<i class="fa fa-times-circle" style="color:red;"></i>  ' . __( 'Unsubscribed', 'ultimate-sms-notifications' );
-                }
-                 
-                break;
-    
+			case 'customer_consent':
+				$consent = $item['customer_consent'];
+				if ( 'on' == $consent ) {
+					echo '<i class="fa fa-check" style="color:green;"></i>' . esc_html__( 'Subscribed', 'ultimate-sms-notifications' );
+				} else {
+					echo '<i class="fa fa-times-circle" style="color:red;"></i>  ' . esc_html__( 'Unsubscribed', 'ultimate-sms-notifications' );
+				}
 
-            case 'date':
-                echo wp_date('m/d/Y H:i:s', strtotime( $item['date'] ));
-                break;
+				break;
+
+			case 'date':
+				echo wp_date( 'm/d/Y H:i:s', strtotime( $item['date'] ) );
+				break;
 
 			default:
-				return print_r( $item, true ); // Show the whole array for troubleshooting purposes
+				return print_r( $item, true );
 		}
 	}
 
@@ -182,11 +181,11 @@ class Woo_Usn_Subscribers extends WP_List_Table {
 	 */
 	function get_columns() {
 		$columns = array(
-			'cb'                          => '<input type="checkbox" />',
-			'customer_id'                => __( 'Customer Name', 'ultimate-sms-notifications' ),
-			'customer_registered_page'                    => __( 'Customer Registration Page', 'ultimate-sms-notifications' ),
-			'customer_consent' => __( 'Customer consent', 'ultimate-sms-notifications' ),
-			'date'                 => __( 'Date', 'ultimate-sms-notifications' ),
+			'cb'                       => '<input type="checkbox" />',
+			'customer_id'              => __( 'Customer Name', 'ultimate-sms-notifications' ),
+			'customer_registered_page' => __( 'Customer Registration Page', 'ultimate-sms-notifications' ),
+			'customer_consent'         => __( 'Customer consent', 'ultimate-sms-notifications' ),
+			'date'                     => __( 'Date', 'ultimate-sms-notifications' ),
 		);
 
 		return $columns;
@@ -223,8 +222,8 @@ class Woo_Usn_Subscribers extends WP_List_Table {
 
 		$this->set_pagination_args(
 			array(
-				'total_items' => $total_items, // WE have to calculate the total number of items
-				'per_page'    => $per_page, // WE have to determine how many items to show on a page
+				'total_items' => $total_items, // WE have to calculate the total number of items.
+				'per_page'    => $per_page, // WE have to determine how many items to show on a page.
 			)
 		);
 
@@ -242,31 +241,26 @@ class Woo_Usn_Subscribers extends WP_List_Table {
 			if ( ! wp_verify_nonce( $nonce, 'woo_usn_sms_logs_delete_nonce' ) ) {
 				die( 'Go get a life script kiddies' );
 			} else {
-				self::delete_customer( absint( $_GET['customer'] ) );
-
-				// esc_url_raw() is used to prevent converting ampersand in url to "#038;"
-				// add_query_arg() return the current url
-				wp_redirect( esc_url_raw( add_query_arg() ) );
-				exit;
+				if ( isset( $_GET['customer'] ) ) {
+					self::delete_customer( absint( $_GET['customer'] ) );
+					wp_safe_redirect( esc_url_raw( add_query_arg() ) );
+					exit;
+				}
 			}
 		}
 
-		// If the delete bulk action is triggered
+		// If the delete bulk action is triggered.
 		if ( ( isset( $_POST['action'] ) && $_POST['action'] == 'bulk-delete' )
 			 || ( isset( $_POST['action2'] ) && $_POST['action2'] == 'bulk-delete' )
 		) {
 
-			$delete_ids = esc_sql( $_POST['bulk-delete'] );
-
-			// loop over the array of record IDs and delete them
-			foreach ( $delete_ids as $id ) {
+			$delete_ids = filter_input_array( INPUT_POST );
+			// loop over the array of record IDs and delete them.
+			foreach ( $delete_ids['bulk-delete'] as $id ) {
 				self::delete_customer( $id );
 
 			}
-
-			// esc_url_raw() is used to prevent converting ampersand in url to "#038;"
-			// add_query_arg() return the current url
-			wp_redirect( esc_url_raw( add_query_arg() ) );
+			wp_safe_redirect( esc_url_raw( add_query_arg() ) );
 			exit;
 		}
 	}
@@ -274,13 +268,13 @@ class Woo_Usn_Subscribers extends WP_List_Table {
 
 class Woo_Usn_Subscribers_Loader {
 
-	// class instance
+	// class instance.
 	static $instance;
 
-	// customer WP_List_Table object
+	// customer WP_List_Table object.
 	public $customers_obj;
 
-	// class constructor
+	// class constructor.
 	public function __construct() {
 		add_filter( 'set-screen-option', array( __CLASS__, 'set_screen' ), 10, 3 );
 	}

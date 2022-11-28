@@ -1,6 +1,5 @@
 <?php
 
-// phpcs:ignorefile
 class Woo_Usn_Admin_Menu
 {
     /**
@@ -55,12 +54,12 @@ class Woo_Usn_Admin_Menu
         $submenu['ultimate-sms-notifications'][22] = array( '<div class="woo-usn-links">' . __( 'Knowledge Base', 'ultimate-sms-notifications' ) . '</div>', 'manage_options', 'https://help.ultimatesmsnotifications.com/?utm_source=' . get_site_url() );
         $submenu['ultimate-sms-notifications'][23] = array( '<div class="woo-usn-links">' . __( 'Contact us', 'ultimate-sms-notifications' ) . '</div>', 'manage_options', 'https://chatting.page/homescriptone?utm_source=' . get_site_url() );
         $first_menu = $submenu['ultimate-sms-notifications'][0];
-        $new_menu = array( '<div>' . __( 'Logs', 'ultimate-sms-notifications' ) . '</div>', 'manage_options', admin_url( "admin.php?page=ultimate-sms-notifications-pricing" ) );
+        $new_menu = array( '<div>' . __( 'Logs', 'ultimate-sms-notifications' ) . '</div>', 'manage_options', admin_url( 'admin.php?page=ultimate-sms-notifications-pricing' ) );
         $bm = array( $first_menu, $new_menu );
         $setting_menu = array_slice( $submenu['ultimate-sms-notifications'], 1 );
         $submenu['ultimate-sms-notifications'] = array_merge_recursive( $bm, $setting_menu );
-        $submenu['ultimate-sms-notifications'][3][2] = admin_url( "admin.php?page=ultimate-sms-notifications-pricing" );
-        $submenu['ultimate-sms-notifications'][4][2] = admin_url( "admin.php?page=ultimate-sms-notifications-pricing" );
+        $submenu['ultimate-sms-notifications'][3][2] = admin_url( 'admin.php?page=ultimate-sms-notifications-pricing' );
+        $submenu['ultimate-sms-notifications'][4][2] = admin_url( 'admin.php?page=ultimate-sms-notifications-pricing' );
     }
 
 }

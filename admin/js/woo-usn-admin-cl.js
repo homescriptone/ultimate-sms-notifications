@@ -18,11 +18,24 @@
         return html;
     };
 
+    var hs_generate_guest_customers_select_operators = function() {
+        var html = "<select name='customer-consent'><option class='woo-usn-operators' value='guest-customers'>Guest Customer</option></select>"
+        return html;
+    }
 
     var hs_generate_consent_select_operators = function() {
         var html = "<select name='customer-consent'><option class='woo-usn-operators' value='accepted'>ACCEPTED</option></select>"
         return html;
     }
+
+    var hs_generate_consent_html_operators = function() {
+        var html;
+        for (var option_name in woo_usn_ajax_object.woo_usn_cl_operators_names['woo-usn-consent-operators']) {
+            html += "<option class='woo-usn-consent-operators' value='" + option_name + "'>" + woo_usn_ajax_object.woo_usn_cl_operators_names['woo-usn-consent-operators'][option_name] + "</option>";
+        }
+        return html;
+    }
+ 
 
     var hs_hide_show_fields = function ( cl_type_mode ){
         var usn_add_btn = $('input#woousn_add_custom_filters');
@@ -172,9 +185,14 @@
                 break;
 
             case '_customer_mobile_marketing':
-                woo_usn_field_options.empty().append(hs_generate_html_operators());
+            case '_guest_customer_mobile_marketing':
+                woo_usn_field_options.empty().append(hs_generate_consent_html_operators());
                 woo_usn_field_values.empty().attr('name', 'customer-consent').append(hs_generate_consent_select_operators())
                 break;
+
+            case '_customer_role':
+                woo_usn_field_options.empty().append(hs_generate_consent_html_operators());
+                woo_usn_field_values.empty().attr('name', 'customer-consent').append(hs_generate_guest_customers_select_operators())
 
             default:
                 break;

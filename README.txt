@@ -1,10 +1,10 @@
-=== Ultimate SMS Notifications for WooCommerce ===  
+=== Ultimate SMS Notifications ===  
 Contributors: homescript  , freemius  
-Tags: orders notifications, woocommerce whatsapp, whatsapp automations, woocommerce whatsapp marketing, woocommerce orders notifications, mobile notifications gdpr compliant, mobile notifications woocommerce, woocommerce, telesign, woocommerce india
+Tags: Order notifications,sms notifications,WooCommerce SMS,Shipping notifications,woocommerce india,woocommerce uk,SMS shipping updates,SMS reminders,automation,events sms
 Donate link: https://buymeacoffee.com/homescriptone/  
 Requires at least: 4.4  
 Tested up to: 6.1   
-Stable tag: 1.9.8.3     
+Stable tag: 1.9.9     
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt    
 
@@ -152,6 +152,19 @@ You can read this tutorial explaining how to do it <a href="https://ultimatesmsn
 == Screenshots ==
 
 == Changelog ==
+<h4>1.9.9 - 21 February 2023</h4>
+<ul>
+<li>Give the ability to shop manager to send notifications on behalf of the administrator.</li>
+<li>Improve the contact list feature.</li>
+</ul>
+<h4>1.9.8.3 - 19 December 2022</h4>
+<ul>
+<li>Fix minor bugs related to the subscribers module.</li>
+</ul>
+<h4>1.9.8.2 - 19 November 2022</h4>
+<ul>
+<li>Fix minor bugs.</li>
+</ul>
 <h4>1.9.8.2 - 19 November 2022</h4>
 <ul>
 <li>Comply with WordPress.org guidelines.</li>

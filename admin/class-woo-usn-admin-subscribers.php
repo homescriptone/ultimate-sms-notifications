@@ -26,6 +26,46 @@ class Woo_Usn_Subscribers extends WP_List_Table {
 
 	}
 
+	/**
+	 * Check if subscribers table exist or not.
+	 */
+	public static function check_if_table_exists() {
+		global $wpdb;
+		$sql = "SHOW TABLES LIKE '{$wpdb->prefix}_woousn_subscribers_list'";
+
+		$query = $wpdb->get_results( $sql, 'ARRAY_A' );
+		$table_name      = $wpdb->prefix . '_woousn_subscribers_list';
+
+		if ( ! function_exists('dbDelta') ) {
+            require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+        }
+
+
+		if ( count( $query ) < 1 ) {
+			global $woo_usn_db_subscribers_version;
+			$charset_collate = $wpdb->get_charset_collate();
+			$sql = "CREATE TABLE $table_name (id mediumint(20) NOT NULL AUTO_INCREMENT,customer_id mediumint(255) NOT NULL UNIQUE,customer_consent text NOT NULL,customer_registered_page text NOT NULL,date datetime DEFAULT '2022-12-12 00:00:00' NOT NULL,PRIMARY KEY  (id)) $charset_collate;";
+			dbDelta( $sql );
+			add_option( 'woo_usn_subscribers_db_version', $woo_usn_db_subscribers_version );
+		}
+
+		$column_sql = "SHOW COLUMNS from `$table_name` LIKE 'customer_order_id';";
+		$query = $wpdb->get_results( $column_sql, 'ARRAY_A' );
+
+		if ( count( $query ) < 1 ) {
+			$sql = "ALTER TABLE `$table_name` ADD COLUMN customer_order_id VARCHAR(255) AFTER customer_registered_page;";
+			dbDelta( $sql );
+		}		
+
+		$column_sql = "SHOW INDEX FROM `$table_name`";
+		$query = $wpdb->get_results( $column_sql, 'ARRAY_A' );
+		
+		if ( in_array( 'customer_id', array_column( $query, 'Table' ) )  ) {
+			$sql = "ALTER TABLE `$table_name` DROP INDEX customer_id;";
+			dbDelta( $sql );
+		}
+	}
+
 
 	/**
 	 * Retrieve customers data from the database.
@@ -48,7 +88,6 @@ class Woo_Usn_Subscribers extends WP_List_Table {
 
 		$sql .= " LIMIT $per_page";
 		$sql .= ' OFFSET ' . ( $page_number - 1 ) * $per_page;
-
 		return $wpdb->get_results( $sql, 'ARRAY_A' );
 	}
 
@@ -56,7 +95,15 @@ class Woo_Usn_Subscribers extends WP_List_Table {
 
 		global $wpdb;
 
-		$sql = "SELECT customer_id FROM {$wpdb->prefix}_woousn_subscribers_list where customer_consent='$choice'";
+		$sql = "SELECT customer_id FROM {$wpdb->prefix}_woousn_subscribers_list where customer_consent LIKE '%" . $choice . "%'";
+
+		return $wpdb->get_results( $sql, 'ARRAY_A' );
+	}
+
+	public static function get_orders_ids( $choice = 'on' ) {
+		global $wpdb;
+
+		$sql = "SELECT customer_order_id FROM {$wpdb->prefix}_woousn_subscribers_list where customer_consent LIKE '%" . $choice . "%'";
 
 		return $wpdb->get_results( $sql, 'ARRAY_A' );
 	}
@@ -109,10 +156,22 @@ class Woo_Usn_Subscribers extends WP_List_Table {
 	public function column_default( $item, $column_name ) {
 		switch ( $column_name ) {
 			case 'customer_id':
-				$customer_id = $item['customer_id'];
-				$customer    = new WC_Customer( $customer_id );
-				$fname       = $customer->get_billing_first_name() . ' ' . $customer->get_billing_last_name();
-				echo wp_kses_post( '<a href="' . admin_url( 'user-edit.php?user_id=' . $customer_id ) . '">' . $fname . '</a>' );
+				if ( $item['customer_id'] == 0 ) {
+					$order_id    = $item['customer_order_id'];
+					if ( $order_id ) {
+						$order_obj = wc_get_order( $order_id );
+						$fname = $order_obj->get_billing_first_name() . ' ' . $order_obj->get_billing_last_name();
+						echo wp_kses_post( '<a href="' . admin_url( "post.php?post=$order_id&action=edit" ) . '">' . $fname . '</a>' );
+					} else {
+						echo "Guest Customer with missing details";
+					}
+				} else {
+					$customer_id = $item['customer_id'];
+					$customer    = new WC_Customer( $customer_id );
+					$fname       = $customer->get_billing_first_name() . ' ' . $customer->get_billing_last_name();
+					echo wp_kses_post( '<a href="' . admin_url( 'user-edit.php?user_id=' . $customer_id ) . '">' . $fname . '</a>' );
+				}
+				
 				break;
 
 			case 'customer_registered_page':
@@ -122,11 +181,20 @@ class Woo_Usn_Subscribers extends WP_List_Table {
 			case 'customer_consent':
 				$consent = $item['customer_consent'];
 				if ( 'on' == $consent ) {
-					echo '<i class="fa fa-check" style="color:green;"></i>' . esc_html__( 'Subscribed', 'ultimate-sms-notifications' );
+					echo '' . esc_html__( 'Subscribed', 'ultimate-sms-notifications' );
 				} else {
-					echo '<i class="fa fa-times-circle" style="color:red;"></i>  ' . esc_html__( 'Unsubscribed', 'ultimate-sms-notifications' );
+					echo '' . esc_html__( 'Unsubscribed', 'ultimate-sms-notifications' );
 				}
 
+				break;
+
+			case 'order_related':
+				$order_id    = $item['customer_order_id'];
+				if ( $order_id ) {
+					$order_obj = wc_get_order( $order_id );
+					$fname = $order_obj->get_billing_first_name() . ' ' . $order_obj->get_billing_last_name();
+					echo wp_kses_post( '<a href="' . admin_url( "post.php?post=$order_id&action=edit" ) . '">' . $fname . '</a>' );
+				}
 				break;
 
 			case 'date':
@@ -185,6 +253,7 @@ class Woo_Usn_Subscribers extends WP_List_Table {
 			'customer_id'              => __( 'Customer Name', 'ultimate-sms-notifications' ),
 			'customer_registered_page' => __( 'Customer Registration Page', 'ultimate-sms-notifications' ),
 			'customer_consent'         => __( 'Customer consent', 'ultimate-sms-notifications' ),
+			'order_related'            => __( 'Order Related', 'ultimate-sms-notifications' ),
 			'date'                     => __( 'Date', 'ultimate-sms-notifications' ),
 		);
 
@@ -211,6 +280,8 @@ class Woo_Usn_Subscribers extends WP_List_Table {
 	 */
 	public function prepare_items() {
 
+		self::check_if_table_exists();
+
 		$this->_column_headers = $this->get_column_info();
 
 		/** Process bulk action */
@@ -225,7 +296,7 @@ class Woo_Usn_Subscribers extends WP_List_Table {
 				'total_items' => $total_items, // WE have to calculate the total number of items.
 				'per_page'    => $per_page, // WE have to determine how many items to show on a page.
 			)
-		);
+		);	
 
 		$this->items = self::get_customers( $per_page, $current_page, true );
 	}

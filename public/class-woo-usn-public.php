@@ -191,21 +191,16 @@ class Woo_Usn_Public
     public function store_customer_consent( WC_Order $customer )
     {
         $sent_consent = filter_input( INPUT_POST, 'woo_usn_sms_consent' );
-        $consent = 'off';
+        // $consent      = 'off';
         $customer_id = $customer->get_customer_id();
-        
-        if ( 'on' === $sent_consent ) {
-            update_user_meta( $customer_id, 'woo_usn_allow_sms_sending', $sent_consent );
-            $consent = $sent_consent;
-        }
-        
+        update_user_meta( $customer_id, 'woo_usn_allow_sms_sending', $sent_consent );
         global  $wpdb ;
         $table_name = $wpdb->prefix . '_woousn_subscribers_list';
         $timezone_format = _x( 'Y-m-d  H:i:s', 'timezone date format' );
         //phpcs:disable
         $wpdb->insert( $table_name, array(
             'customer_id'              => $customer_id,
-            'customer_consent'         => $consent,
+            'customer_consent'         => $sent_consent,
             'customer_registered_page' => 'checkout',
             'date'                     => date_i18n( $timezone_format, false, true ),
         ) );

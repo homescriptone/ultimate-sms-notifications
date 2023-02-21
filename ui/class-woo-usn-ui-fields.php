@@ -11,6 +11,7 @@ class Woo_Usn_UI_Fields {
 	 */
 	public static function get_cl_rules_names() {
 		$list = array(
+			'_customer_role'      => __( 'If customer', 'ultimate-sms-notifications' ),
 			'_completed_date'     => __( 'If completed date is', 'ultimate-sms-notifications' ),
 			'_paid_date'     	  => __( 'If paid date is', 'ultimate-sms-notifications' ),
 			'_payment_method'     => __( 'If payment methods used', 'ultimate-sms-notifications' ),
@@ -24,6 +25,7 @@ class Woo_Usn_UI_Fields {
 			'_order_shipping'     => __( 'If shipping amount', 'ultimate-sms-notifications' ),
 			'_order_shipping_tax' => __( 'If shipping amount (inc taxes)', 'ultimate-sms-notifications' ),
 			'_customer_mobile_marketing' => __( 'If customer mobile marketing consent', 'ultimate-sms-notifications' ),
+			'_guest_customer_mobile_marketing' => __( 'If guest customer mobile marketing consent', 'ultimate-sms-notifications' ),
 		);
 
 		return apply_filters( 'woo_usn_cl_rules_names', $list );
@@ -47,6 +49,10 @@ class Woo_Usn_UI_Fields {
 			'woo-usn-operators'      => array(
 				'in'     => __( 'IN', 'ultimate-sms-notifications' ),
 				'not-in' => __( 'NOT IN', 'ultimate-sms-notifications' ),
+			),
+			'woo-usn-consent-operators'      => array(
+				'on'     => __( 'is', 'ultimate-sms-notifications' ),
+				'off' => __( 'is not', 'ultimate-sms-notifications' ),
 			),
 		);
 
